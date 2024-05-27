@@ -1,0 +1,7 @@
+node_modules/
+gitpush.sh~
+/.babelrc~
+*.blend1
+
+docs/
+build/
