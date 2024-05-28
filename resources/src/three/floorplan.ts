@@ -4,7 +4,6 @@
 
 module BP3D.Three {
   export var Floorplan = function (scene, floorplan, controls) {
-
     var scope = this;
 
     this.scene = scene;
@@ -29,7 +28,7 @@ module BP3D.Three {
       scope.edges = [];
 
       // draw floors
-     scope.floorplan.getRooms().forEach((room) => {
+      scope.floorplan.getRooms().forEach((room) => {
         var threeFloor = new Three.Floor(scene, room);
         scope.floors.push(threeFloor);
         threeFloor.addToScene();
@@ -37,10 +36,9 @@ module BP3D.Three {
 
       // draw edges
       scope.floorplan.wallEdges().forEach((edge) => {
-        var threeEdge = new Three.Edge(
-          scene, edge, scope.controls);
+        var threeEdge = new Three.Edge(scene, edge, scope.controls);
         scope.edges.push(threeEdge);
       });
     }
-  }
+  };
 }

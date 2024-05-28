@@ -13,14 +13,14 @@ module BP3D.Items {
     3: Items.InWallItem,
     7: Items.InWallFloorItem,
     8: Items.OnFloorItem,
-    9: Items.WallFloorItem
+    9: Items.WallFloorItem,
   };
 
   /** Factory class to create items. */
   export class Factory {
     /** Gets the class for the specified item. */
-    public static getClass(itemType) { 
-      return item_types[itemType]
+    public static getClass(itemType) {
+      return item_types[itemType];
     }
   }
 }

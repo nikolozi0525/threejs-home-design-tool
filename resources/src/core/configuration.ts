@@ -17,11 +17,11 @@ module BP3D.Core {
   /** Global configuration to customize the whole system.  */
   export class Configuration {
     /** Configuration data loaded from/stored to extern. */
-    private static data: {[key: string]: any} = {
+    private static data: { [key: string]: any } = {
       dimUnit: dimInch,
 
       wallHeight: 250,
-      wallThickness: 10
+      wallThickness: 10,
     };
 
     /** Set a configuration parameter. */

@@ -9,7 +9,8 @@
     "reload": "livereload 'build/'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-run-all --parallel reload dev",
-    "docs": "esdoc"
+    "docs": "esdoc",
+    "prettier": "prettier --write '**/*.{ts,js,css,html}'"
   },
   "repository": {
     "type": "git",

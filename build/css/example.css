@@ -30,7 +30,7 @@ div {
 .sidebar {
   padding: 20px;
   overflow-x: hidden;
-  overflow-y: auto; 
+  overflow-y: auto;
   border-right: 1px solid #eee;
 }
 
@@ -73,8 +73,8 @@ div {
   background-color: rgba(50, 50, 50, 0.9);
 }
 
-#loading-modal  h1 {
-  text-align: center; 
+#loading-modal h1 {
+  text-align: center;
   margin-top: 30%;
   color: #fff;
 }
@@ -94,21 +94,21 @@ div {
 #add-items {
   display: none;
   padding: 20px;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 #main-controls {
   position: absolute;
   top: 20px;
   left: 20px;
-  padding: 0;  
+  padding: 0;
 }
 
 #camera-controls {
   position: absolute;
   bottom: 20px;
   right: 0;
-  padding: 0 20px;  
+  padding: 0 20px;
   text-align: right;
 }
 
@@ -117,7 +117,7 @@ div {
   left: 0;
   top: 0;
   margin: 20px 0;
-  padding: 0 20px; 
+  padding: 0 20px;
   width: 100%;
 }
 
@@ -125,7 +125,7 @@ div {
   position: absolute;
   left: 20px;
   bottom: 20px;
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
   padding: 5px 10px;
   z-index: 10;
@@ -143,7 +143,7 @@ div {
   overflow: hidden;
 }
 
-.btn-file input[type=file] {
+.btn-file input[type="file"] {
   position: absolute;
   top: 0;
   right: 0;

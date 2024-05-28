@@ -15,7 +15,9 @@ module BP3D.Three {
     var basePlanes = []; // always visible
     var texture = null;
 
-    var lightMap = THREE.ImageUtils.loadTexture("rooms/textures/walllightmap.png");
+    var lightMap = THREE.ImageUtils.loadTexture(
+      "rooms/textures/walllightmap.png",
+    );
     var fillerColor = 0xdddddd;
     var sideColor = 0xcccccc;
     var baseColor = 0xdddddd;
@@ -26,7 +28,7 @@ module BP3D.Three {
       edge.redrawCallbacks.remove(redraw);
       controls.cameraMovedCallbacks.remove(updateVisibility);
       removeFromScene();
-    }
+    };
 
     function init() {
       edge.redrawCallbacks.add(redraw);
@@ -79,14 +81,15 @@ module BP3D.Three {
       var focus = new THREE.Vector3(
         (start.x + end.x) / 2.0,
         0,
-        (start.y + end.y) / 2.0);
+        (start.y + end.y) / 2.0,
+      );
       var direction = position.sub(focus).normalize();
 
       // find dot
       var dot = normal.dot(direction);
 
       // update visible
-      scope.visible = (dot >= 0);
+      scope.visible = dot >= 0;
 
       // show or hide plans
       planes.forEach((plane) => {
@@ -107,9 +110,11 @@ module BP3D.Three {
 
     function updateTexture(callback?) {
       // callback is fired when texture loads
-      callback = callback || function () {
-        scene.needsUpdate = true;
-      }
+      callback =
+        callback ||
+        function () {
+          scene.needsUpdate = true;
+        };
       var textureData = edge.getTexture();
       var stretch = textureData.stretch;
       var url = textureData.url;
@@ -137,44 +142,58 @@ module BP3D.Three {
 
       var fillerMaterial = new THREE.MeshBasicMaterial({
         color: fillerColor,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
       });
 
       // exterior plane
-      planes.push(makeWall(
-        edge.exteriorStart(),
-        edge.exteriorEnd(),
-        edge.exteriorTransform,
-        edge.invExteriorTransform,
-        fillerMaterial));
+      planes.push(
+        makeWall(
+          edge.exteriorStart(),
+          edge.exteriorEnd(),
+          edge.exteriorTransform,
+          edge.invExteriorTransform,
+          fillerMaterial,
+        ),
+      );
 
       // interior plane
-      planes.push(makeWall(
-        edge.interiorStart(),
-        edge.interiorEnd(),
-        edge.interiorTransform,
-        edge.invInteriorTransform,
-        wallMaterial));
+      planes.push(
+        makeWall(
+          edge.interiorStart(),
+          edge.interiorEnd(),
+          edge.interiorTransform,
+          edge.invInteriorTransform,
+          wallMaterial,
+        ),
+      );
 
       // bottom
       // put into basePlanes since this is always visible
-      basePlanes.push(buildFiller(
-        edge, 0,
-        THREE.BackSide, baseColor));
+      basePlanes.push(buildFiller(edge, 0, THREE.BackSide, baseColor));
 
       // top
-      planes.push(buildFiller(
-        edge, wall.height,
-        THREE.DoubleSide, fillerColor));
+      planes.push(
+        buildFiller(edge, wall.height, THREE.DoubleSide, fillerColor),
+      );
 
       // sides
-      planes.push(buildSideFillter(
-        edge.interiorStart(), edge.exteriorStart(),
-        wall.height, sideColor));
+      planes.push(
+        buildSideFillter(
+          edge.interiorStart(),
+          edge.exteriorStart(),
+          wall.height,
+          sideColor,
+        ),
+      );
 
-      planes.push(buildSideFillter(
-        edge.interiorEnd(), edge.exteriorEnd(),
-        wall.height, sideColor));
+      planes.push(
+        buildSideFillter(
+          edge.interiorEnd(),
+          edge.exteriorEnd(),
+          wall.height,
+          sideColor,
+        ),
+      );
     }
 
     // start, end have x and y attributes (i.e. corners)
@@ -196,13 +215,13 @@ module BP3D.Three {
         new THREE.Vector2(points[0].x, points[0].y),
         new THREE.Vector2(points[1].x, points[1].y),
         new THREE.Vector2(points[2].x, points[2].y),
-        new THREE.Vector2(points[3].x, points[3].y)
+        new THREE.Vector2(points[3].x, points[3].y),
       ]);
 
       // add holes for each wall item
       wall.items.forEach((item) => {
         var pos = item.position.clone();
-        pos.applyMatrix4(transform)
+        pos.applyMatrix4(transform);
         var halfSize = item.halfSize;
         var min = halfSize.clone().multiplyScalar(-1);
         var max = halfSize.clone();
@@ -213,7 +232,7 @@ module BP3D.Three {
           new THREE.Vector2(min.x, min.y),
           new THREE.Vector2(max.x, min.y),
           new THREE.Vector2(max.x, max.y),
-          new THREE.Vector2(min.x, max.y)
+          new THREE.Vector2(min.x, max.y),
         ];
 
         shape.holes.push(new THREE.Path(holePoints));
@@ -231,7 +250,8 @@ module BP3D.Three {
       geometry.faceVertexUvs[0] = [];
 
       function vertexToUv(vertex) {
-        var x = Core.Utils.distance(v1.x, v1.z, vertex.x, vertex.z) / totalDistance;
+        var x =
+          Core.Utils.distance(v1.x, v1.z, vertex.x, vertex.z) / totalDistance;
         var y = vertex.y / height;
         return new THREE.Vector2(x, y);
       }
@@ -243,7 +263,8 @@ module BP3D.Three {
         geometry.faceVertexUvs[0].push([
           vertexToUv(vertA),
           vertexToUv(vertB),
-          vertexToUv(vertC)]);
+          vertexToUv(vertC),
+        ]);
       });
 
       geometry.faceVertexUvs[1] = geometry.faceVertexUvs[0];
@@ -251,9 +272,7 @@ module BP3D.Three {
       geometry.computeFaceNormals();
       geometry.computeVertexNormals();
 
-      var mesh = new THREE.Mesh(
-        geometry,
-        material);
+      var mesh = new THREE.Mesh(geometry, material);
 
       return mesh;
     }
@@ -263,7 +282,7 @@ module BP3D.Three {
         toVec3(p1),
         toVec3(p2),
         toVec3(p2, height),
-        toVec3(p1, height)
+        toVec3(p1, height),
       ];
 
       var geometry = new THREE.Geometry();
@@ -275,7 +294,7 @@ module BP3D.Three {
 
       var fillerMaterial = new THREE.MeshBasicMaterial({
         color: color,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
       });
 
       var filler = new THREE.Mesh(geometry, fillerMaterial);
@@ -287,12 +306,12 @@ module BP3D.Three {
         toVec2(edge.exteriorStart()),
         toVec2(edge.exteriorEnd()),
         toVec2(edge.interiorEnd()),
-        toVec2(edge.interiorStart())
+        toVec2(edge.interiorStart()),
       ];
 
       var fillerMaterial = new THREE.MeshBasicMaterial({
         color: color,
-        side: side
+        side: side,
       });
 
       var shape = new THREE.Shape(points);
@@ -314,5 +333,5 @@ module BP3D.Three {
     }
 
     init();
-  }
+  };
 }

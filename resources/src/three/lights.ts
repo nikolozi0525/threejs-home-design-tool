@@ -2,7 +2,6 @@
 
 module BP3D.Three {
   export var Lights = function (scene, floorplan) {
-
     var scope = this;
     var scene = scene;
     var floorplan = floorplan;
@@ -14,7 +13,7 @@ module BP3D.Three {
 
     this.getDirLight = function () {
       return dirLight;
-    }
+    };
 
     function init() {
       var light = new THREE.HemisphereLight(0xffffff, 0x888888, 1.1);
@@ -42,13 +41,11 @@ module BP3D.Three {
     }
 
     function updateShadowCamera() {
-
       var size = floorplan.getSize();
       var d = (Math.max(size.z, size.x) + tol) / 2.0;
 
       var center = floorplan.getCenter();
-      var pos = new THREE.Vector3(
-        center.x, height, center.z);
+      var pos = new THREE.Vector3(center.x, height, center.z);
       dirLight.position.copy(pos);
       dirLight.target.position.copy(center);
       //dirLight.updateMatrix();
@@ -68,5 +65,5 @@ module BP3D.Three {
     }
 
     init();
-  }
+  };
 }

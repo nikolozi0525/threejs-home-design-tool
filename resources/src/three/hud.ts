@@ -25,11 +25,11 @@ module BP3D.Three {
 
     this.getScene = function () {
       return scene;
-    }
+    };
 
     this.getObject = function () {
       return activeObject;
-    }
+    };
 
     function init() {
       three.itemSelectedCallbacks.add(itemSelected);
@@ -62,12 +62,12 @@ module BP3D.Three {
     this.setRotating = function (isRotating) {
       rotating = isRotating;
       setColor();
-    }
+    };
 
     this.setMouseover = function (isMousedOver) {
       mouseover = isMousedOver;
       setColor();
-    }
+    };
 
     function setColor() {
       if (activeObject) {
@@ -79,7 +79,7 @@ module BP3D.Three {
     }
 
     function getColor() {
-      return (mouseover || rotating) ? hoverColor : color;
+      return mouseover || rotating ? hoverColor : color;
     }
 
     this.update = function () {
@@ -88,29 +88,29 @@ module BP3D.Three {
         activeObject.position.x = selectedItem.position.x;
         activeObject.position.z = selectedItem.position.z;
       }
-    }
+    };
 
     function makeLineGeometry(item) {
       var geometry = new THREE.Geometry();
 
-      geometry.vertices.push(
-        new THREE.Vector3(0, 0, 0),
-        rotateVector(item)
-      );
+      geometry.vertices.push(new THREE.Vector3(0, 0, 0), rotateVector(item));
 
       return geometry;
     }
 
     function rotateVector(item) {
-      var vec = new THREE.Vector3(0, 0,
-        Math.max(item.halfSize.x, item.halfSize.z) + 1.4 + distance);
+      var vec = new THREE.Vector3(
+        0,
+        0,
+        Math.max(item.halfSize.x, item.halfSize.z) + 1.4 + distance,
+      );
       return vec;
     }
 
     function makeLineMaterial(rotating) {
       var mat = new THREE.LineBasicMaterial({
         color: getColor(),
-        linewidth: 3
+        linewidth: 3,
       });
       return mat;
     }
@@ -118,7 +118,7 @@ module BP3D.Three {
     function makeCone(item) {
       var coneGeo = new THREE.CylinderGeometry(5, 0, 10);
       var coneMat = new THREE.MeshBasicMaterial({
-        color: getColor()
+        color: getColor(),
       });
       var cone = new THREE.Mesh(coneGeo, coneMat);
       cone.position.copy(rotateVector(item));
@@ -131,7 +131,7 @@ module BP3D.Three {
     function makeSphere(item) {
       var geometry = new THREE.SphereGeometry(4, 16, 16);
       var material = new THREE.MeshBasicMaterial({
-        color: getColor()
+        color: getColor(),
       });
       var sphere = new THREE.Mesh(geometry, material);
       return sphere;
@@ -142,7 +142,8 @@ module BP3D.Three {
       var line = new THREE.Line(
         makeLineGeometry(item),
         makeLineMaterial(scope.rotating),
-        THREE.LinePieces);
+        THREE.LinePieces,
+      );
 
       var cone = makeCone(item);
       var sphere = makeSphere(item);
@@ -160,5 +161,5 @@ module BP3D.Three {
     }
 
     init();
-  }
+  };
 }

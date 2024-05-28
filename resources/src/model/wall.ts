@@ -11,16 +11,15 @@ module BP3D.Model {
   const defaultWallTexture = {
     url: "rooms/textures/wallmap.png",
     stretch: true,
-    scale: 0
-  }
+    scale: 0,
+  };
 
-  /** 
+  /**
    * A Wall is the basic element to create Rooms.
-   * 
+   *
    * Walls consists of two half edges.
    */
   export class Wall {
-
     /** The unique id of each wall. */
     private id: string;
 
@@ -46,7 +45,9 @@ module BP3D.Model {
     public backTexture = defaultWallTexture;
 
     /** Wall thickness. */
-    public thickness = Core.Configuration.getNumericValue(Core.configWallThickness);
+    public thickness = Core.Configuration.getNumericValue(
+      Core.configWallThickness,
+    );
 
     /** Wall height. */
     public height = Core.Configuration.getNumericValue(Core.configWallHeight);
@@ -60,15 +61,18 @@ module BP3D.Model {
     /** Actions to be applied explicitly. */
     private action_callbacks = $.Callbacks();
 
-    /** 
+    /**
      * Constructs a new wall.
      * @param start Start corner.
      * @param end End corner.
      */
-    constructor(private start: Corner, private end: Corner) {
+    constructor(
+      private start: Corner,
+      private end: Corner,
+    ) {
       this.id = this.getUuid();
 
-      this.start.attachStart(this)
+      this.start.attachStart(this);
       this.end.attachEnd(this);
     }
 
@@ -101,11 +105,11 @@ module BP3D.Model {
     }
 
     public fireOnAction(func) {
-      this.action_callbacks.add(func)
+      this.action_callbacks.add(func);
     }
 
     public fireAction(action) {
-      this.action_callbacks.fire(action)
+      this.action_callbacks.fire(action);
     }
 
     private relativeMove(dx: number, dy: number) {
@@ -171,9 +175,14 @@ module BP3D.Model {
     }
 
     public distanceFrom(x: number, y: number): number {
-      return Core.Utils.pointDistanceFromLine(x, y,
-        this.getStartX(), this.getStartY(),
-        this.getEndX(), this.getEndY());
+      return Core.Utils.pointDistanceFromLine(
+        x,
+        y,
+        this.getStartX(),
+        this.getStartY(),
+        this.getEndX(),
+        this.getEndY(),
+      );
     }
 
     /** Return the corner opposite of the one provided.
@@ -186,7 +195,7 @@ module BP3D.Model {
       } else if (this.end === corner) {
         return this.start;
       } else {
-        console.log('Wall does not connect to corner');
+        console.log("Wall does not connect to corner");
       }
     }
   }

@@ -55,7 +55,7 @@ var ViewerFloorplanner = function (blueprint3d) {
         } else {
           $("#draw-walls-hint").hide();
         }
-      }
+      },
     );
 
     $(move).click(function () {
@@ -153,7 +153,7 @@ var mainControls = function (blueprint3d) {
     $("#saveGLTF").click(saveGLTF);
     blueprint3d.three.addEventListener(
       BP3DJS.EVENT_GLTF_READY,
-      saveGLTFCallback
+      saveGLTFCallback,
     );
   }
 
@@ -184,14 +184,14 @@ var GlobalProperties = function () {
     console.log(
       this.units,
       this.unitslabel[unit],
-      BP3DJS.Configuration.getStringValue(BP3DJS.configDimUnit)
+      BP3DJS.Configuration.getStringValue(BP3DJS.configDimUnit),
     );
 
     //		globalPropFolder = getGlobalPropertiesFolder(gui, aGlobal, floorplanner);
     var view2df = construct2dInterfaceFolder(
       globalPropFolder,
       aGlobal,
-      blueprint3d.floorplanner
+      blueprint3d.floorplanner,
     );
     blueprint3d.floorplanner.view.draw();
     for (var i in this.guiControllers) {
@@ -242,7 +242,7 @@ var CornerProperties = function (corner, gui) {
     scope.x = BP3DJS.Dimensioning.cmToMeasureRaw(scope.corner.x);
     scope.y = BP3DJS.Dimensioning.cmToMeasureRaw(scope.corner.y);
     scope.elevation = BP3DJS.Dimensioning.cmToMeasureRaw(
-      scope.corner.elevation
+      scope.corner.elevation,
     );
     scope.xcontrol.updateDisplay();
     scope.ycontrol.updateDisplay();
@@ -257,7 +257,7 @@ var CornerProperties = function (corner, gui) {
   }
   function onChangeElevation() {
     scope.corner.elevation = BP3DJS.Dimensioning.cmFromMeasureRaw(
-      scope.elevation
+      scope.elevation,
     );
   }
 
@@ -282,7 +282,7 @@ var CornerProperties = function (corner, gui) {
   this.elevationcontrol = f
     .add(this, "elevation")
     .name(
-      `Elevation(${BP3DJS.Configuration.getStringValue(BP3DJS.configDimUnit)})`
+      `Elevation(${BP3DJS.Configuration.getStringValue(BP3DJS.configDimUnit)})`,
     )
     .min(0)
     .step(0.01)
@@ -319,7 +319,7 @@ var Wall2DProperties = function (wall2d, gui) {
 
   function onChangeWallLength() {
     scope.wall2d.wallSize = BP3DJS.Dimensioning.cmFromMeasureRaw(
-      scope.walllength
+      scope.walllength,
     );
     blueprint3d.floorplanner.view.draw();
   }
@@ -500,14 +500,14 @@ var WallProperties = function () {
       this.currentWall.setTexture(
         this.textures[this.wallmaterialname][0],
         this.textures[this.wallmaterialname][1],
-        this.textures[this.wallmaterialname][2]
+        this.textures[this.wallmaterialname][2],
       );
     }
     if (this.currentFloor && this.forAllWalls) {
       this.currentFloor.setRoomWallsTexture(
         this.textures[this.wallmaterialname][0],
         this.textures[this.wallmaterialname][1],
-        this.textures[this.wallmaterialname][2]
+        this.textures[this.wallmaterialname][2],
       );
     }
   };
@@ -517,7 +517,7 @@ var WallProperties = function () {
       this.currentFloor.setTexture(
         this.textures[this.floormaterialname][0],
         this.textures[this.floormaterialname][1],
-        this.textures[this.floormaterialname][2]
+        this.textures[this.floormaterialname][2],
       );
     }
   };
@@ -632,21 +632,21 @@ function addBlueprintListeners(blueprint3d) {
   var model_floorplan = blueprint3d.model.floorplan;
   model_floorplan.addEventListener(
     BP3DJS.EVENT_CORNER_2D_DOUBLE_CLICKED,
-    echoEvents
+    echoEvents,
   );
   model_floorplan.addEventListener(
     BP3DJS.EVENT_WALL_2D_DOUBLE_CLICKED,
-    echoEvents
+    echoEvents,
   );
   model_floorplan.addEventListener(
     BP3DJS.EVENT_ROOM_2D_DOUBLE_CLICKED,
-    echoEvents
+    echoEvents,
   );
 
   model_floorplan.addEventListener(BP3DJS.EVENT_NOTHING_CLICKED, addGUIFolder);
   model_floorplan.addEventListener(
     BP3DJS.EVENT_CORNER_2D_CLICKED,
-    addGUIFolder
+    addGUIFolder,
   );
   model_floorplan.addEventListener(BP3DJS.EVENT_WALL_2D_CLICKED, addGUIFolder);
   model_floorplan.addEventListener(BP3DJS.EVENT_ROOM_2D_CLICKED, addGUIFolder);
@@ -657,15 +657,15 @@ function addBlueprintListeners(blueprint3d) {
 
   model_floorplan.addEventListener(
     BP3DJS.EVENT_CORNER_ATTRIBUTES_CHANGED,
-    echoEvents
+    echoEvents,
   );
   model_floorplan.addEventListener(
     BP3DJS.EVENT_WALL_ATTRIBUTES_CHANGED,
-    echoEvents
+    echoEvents,
   );
   model_floorplan.addEventListener(
     BP3DJS.EVENT_ROOM_ATTRIBUTES_CHANGED,
-    echoEvents
+    echoEvents,
   );
 
   function deleteEvent(evt) {
@@ -728,14 +728,14 @@ function construct2dInterfaceFolder(f, global, floorplanner) {
   function onChangeSnapResolution() {
     BP3DJS.Configuration.setValue(
       BP3DJS.snapTolerance,
-      BP3DJS.Dimensioning.cmFromMeasureRaw(view2dindirect.snapValue)
+      BP3DJS.Dimensioning.cmFromMeasureRaw(view2dindirect.snapValue),
     );
   }
 
   function onChangeGridResolution() {
     BP3DJS.Configuration.setValue(
       BP3DJS.gridSpacing,
-      BP3DJS.Dimensioning.cmFromMeasureRaw(view2dindirect.gridResValue)
+      BP3DJS.Dimensioning.cmFromMeasureRaw(view2dindirect.gridResValue),
     );
     blueprint3d.floorplanner.view.draw();
   }
@@ -743,10 +743,10 @@ function construct2dInterfaceFolder(f, global, floorplanner) {
   var units = BP3DJS.Configuration.getStringValue(BP3DJS.configDimUnit);
   var view2dindirect = {
     snapValue: BP3DJS.Dimensioning.cmToMeasureRaw(
-      BP3DJS.Configuration.getNumericValue(BP3DJS.snapTolerance)
+      BP3DJS.Configuration.getNumericValue(BP3DJS.snapTolerance),
     ),
     gridResValue: BP3DJS.Dimensioning.cmToMeasureRaw(
-      BP3DJS.Configuration.getNumericValue(BP3DJS.gridSpacing)
+      BP3DJS.Configuration.getNumericValue(BP3DJS.gridSpacing),
     ),
   };
 
@@ -784,7 +784,7 @@ function construct2dInterfaceFolder(f, global, floorplanner) {
   var carbonPropsFolder = getCarbonSheetPropertiesFolder(
     view2df,
     floorplanner.carbonSheet,
-    global
+    global,
   );
 
   view2df.open();
@@ -965,7 +965,7 @@ function datGUI(three, floorplanner) {
   var view2df = construct2dInterfaceFolder(
     globalPropFolder,
     aGlobal,
-    floorplanner
+    floorplanner,
   );
   view2df.open();
 
@@ -1064,7 +1064,7 @@ $(document).ready(function () {
   $("#topview, #isometryview, #frontview, #leftview, #rightview").click(
     function () {
       blueprint3d.three.switchView($(this).attr("id"));
-    }
+    },
   );
 
   $("#add-items")
@@ -1091,7 +1091,7 @@ $(document).ready(function () {
           null,
           null,
           false,
-          { position: placeAt, edge: aWall.currentWall }
+          { position: placeAt, edge: aWall.currentWall },
         );
       } else if (aWall.currentFloor) {
         var placeAt = aWall.currentFloor.center.clone();
@@ -1103,7 +1103,7 @@ $(document).ready(function () {
           null,
           null,
           false,
-          { position: placeAt }
+          { position: placeAt },
         );
       } else {
         blueprint3d.model.scene.addItem(itemType, modelUrl, metadata);

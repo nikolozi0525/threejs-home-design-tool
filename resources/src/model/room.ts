@@ -13,18 +13,16 @@ var Polygon = require('polygon')
 */
 
 module BP3D.Model {
-
   /** Default texture to be used if nothing is provided. */
   const defaultRoomTexture = {
     url: "rooms/textures/hardwood.png",
-    scale: 400
-  }
+    scale: 400,
+  };
 
-  /** 
-   * A Room is the combination of a Floorplan with a floor plane. 
+  /**
+   * A Room is the combination of a Floorplan with a floor plane.
    */
   export class Room {
-
     /** */
     public interiorCorners: Corner[] = [];
 
@@ -43,7 +41,10 @@ module BP3D.Model {
     /**
      *  ordered CCW
      */
-    constructor(private floorplan: Floorplan, public corners: Corner[]) {
+    constructor(
+      private floorplan: Floorplan,
+      public corners: Corner[],
+    ) {
       this.updateWalls();
       this.updateInteriorCorners();
       this.generatePlane();
@@ -67,10 +68,14 @@ module BP3D.Model {
       return tex || defaultRoomTexture;
     }
 
-    /** 
+    /**
      * textureStretch always true, just an argument for consistency with walls
      */
-    private setTexture(textureUrl: string, textureStretch, textureScale: number) {
+    private setTexture(
+      textureUrl: string,
+      textureStretch,
+      textureScale: number,
+    ) {
       var uuid = this.getUuid();
       this.floorplan.setFloorTexture(uuid, textureUrl, textureScale);
       this.floorChangeCallbacks.fire();
@@ -79,16 +84,16 @@ module BP3D.Model {
     private generatePlane() {
       var points = [];
       this.interiorCorners.forEach((corner) => {
-        points.push(new THREE.Vector2(
-          corner.x,
-          corner.y));
+        points.push(new THREE.Vector2(corner.x, corner.y));
       });
       var shape = new THREE.Shape(points);
       var geometry = new THREE.ShapeGeometry(shape);
-      this.floorPlane = new THREE.Mesh(geometry,
+      this.floorPlane = new THREE.Mesh(
+        geometry,
         new THREE.MeshBasicMaterial({
-          side: THREE.DoubleSide
-        }));
+          side: THREE.DoubleSide,
+        }),
+      );
       this.floorPlane.visible = false;
       this.floorPlane.rotation.set(Math.PI / 2, 0, 0);
       (<any>this.floorPlane).room = this; // js monkey patch
@@ -96,7 +101,7 @@ module BP3D.Model {
 
     private cycleIndex(index) {
       if (index < 0) {
-        return index += this.corners.length;
+        return (index += this.corners.length);
       } else {
         return index % this.corners.length;
       }
@@ -115,17 +120,15 @@ module BP3D.Model {
       }
     }
 
-    /** 
+    /**
      * Populates each wall's half edge relating to this room
      * this creates a fancy doubly connected edge list (DCEL)
      */
     private updateWalls() {
-
       var prevEdge = null;
       var firstEdge = null;
 
       for (var i = 0; i < this.corners.length; i++) {
-
         var firstCorner = this.corners[i];
         var secondCorner = this.corners[(i + 1) % this.corners.length];
 

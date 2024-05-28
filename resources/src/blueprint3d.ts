@@ -12,7 +12,7 @@ module BP3D {
     threeElement?: string;
 
     /** */
-    threeCanvasElement? : string;
+    threeCanvasElement?: string;
 
     /** */
     floorplannerElement?: string;
@@ -23,7 +23,6 @@ module BP3D {
 
   /** Blueprint3D core application. */
   export class Blueprint3d {
-    
     private model: Model.Model;
 
     private three: any; // Three.Main;
@@ -35,12 +34,19 @@ module BP3D {
      */
     constructor(options: Options) {
       this.model = new Model.Model(options.textureDir);
-      this.three = new Three.Main(this.model, options.threeElement, options.threeCanvasElement, {});
+      this.three = new Three.Main(
+        this.model,
+        options.threeElement,
+        options.threeCanvasElement,
+        {},
+      );
 
       if (!options.widget) {
-        this.floorplanner = new Floorplanner.Floorplanner(options.floorplannerElement, this.model.floorplan);
-      }
-      else {
+        this.floorplanner = new Floorplanner.Floorplanner(
+          options.floorplannerElement,
+          this.model.floorplan,
+        );
+      } else {
         this.three.getController().enabled = false;
       }
     }

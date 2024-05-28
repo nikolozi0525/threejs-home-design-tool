@@ -43,17 +43,24 @@ namespace BP3D.Items {
     /** */
     protected backVisible = false;
 
-    constructor(model: Model.Model, metadata: Metadata, geometry: THREE.Geometry, material: THREE.MeshFaceMaterial, position: THREE.Vector3, rotation: number, scale: THREE.Vector3) {
+    constructor(
+      model: Model.Model,
+      metadata: Metadata,
+      geometry: THREE.Geometry,
+      material: THREE.MeshFaceMaterial,
+      position: THREE.Vector3,
+      rotation: number,
+      scale: THREE.Vector3,
+    ) {
       super(model, metadata, geometry, material, position, rotation, scale);
 
       this.allowRotate = false;
-    };
+    }
 
     /** Get the closet wall edge.
      * @returns The wall edge.
      */
     public closestWallEdge(): Model.HalfEdge {
-
       var wallEdges = this.model.floorplan.wallEdges();
 
       var wallEdge = null;
@@ -95,20 +102,32 @@ namespace BP3D.Items {
       } else {
         this.backVisible = visible;
       }
-      this.visible = (this.frontVisible || this.backVisible);
+      this.visible = this.frontVisible || this.backVisible;
     }
 
     /** */
     private updateSize() {
-      this.wallOffsetScalar = (this.geometry.boundingBox.max.z - this.geometry.boundingBox.min.z) * this.scale.z / 2.0;
-      this.sizeX = (this.geometry.boundingBox.max.x - this.geometry.boundingBox.min.x) * this.scale.x;
-      this.sizeY = (this.geometry.boundingBox.max.y - this.geometry.boundingBox.min.y) * this.scale.y;
+      this.wallOffsetScalar =
+        ((this.geometry.boundingBox.max.z - this.geometry.boundingBox.min.z) *
+          this.scale.z) /
+        2.0;
+      this.sizeX =
+        (this.geometry.boundingBox.max.x - this.geometry.boundingBox.min.x) *
+        this.scale.x;
+      this.sizeY =
+        (this.geometry.boundingBox.max.y - this.geometry.boundingBox.min.y) *
+        this.scale.y;
     }
 
     /** */
     public resized() {
       if (this.boundToFloor) {
-        this.position.y = 0.5 * (this.geometry.boundingBox.max.y - this.geometry.boundingBox.min.y) * this.scale.y + 0.01;
+        this.position.y =
+          0.5 *
+            (this.geometry.boundingBox.max.y -
+              this.geometry.boundingBox.min.y) *
+            this.scale.y +
+          0.01;
       }
 
       this.updateSize();
@@ -127,12 +146,13 @@ namespace BP3D.Items {
         var newPos = new THREE.Vector3(
           center.x,
           closestWallEdge.wall.height / 2.0,
-          center.y);
+          center.y,
+        );
         this.boundMove(newPos);
         this.position.copy(newPos);
         this.redrawWall();
       }
-    };
+    }
 
     /** */
     public moveToPosition(vec3, intersection) {
@@ -171,8 +191,11 @@ namespace BP3D.Items {
       normal2.y = normal3.z;
 
       var angle = Core.Utils.angle(
-        this.refVec.x, this.refVec.y,
-        normal2.x, normal2.y);
+        this.refVec.x,
+        this.refVec.y,
+        normal2.x,
+        normal2.y,
+      );
       this.rotation.y = angle;
 
       // update currentWall
@@ -199,12 +222,20 @@ namespace BP3D.Items {
 
       if (vec3.x < this.sizeX / 2.0 + tolerance) {
         vec3.x = this.sizeX / 2.0 + tolerance;
-      } else if (vec3.x > (edge.interiorDistance() - this.sizeX / 2.0 - tolerance)) {
+      } else if (
+        vec3.x >
+        edge.interiorDistance() - this.sizeX / 2.0 - tolerance
+      ) {
         vec3.x = edge.interiorDistance() - this.sizeX / 2.0 - tolerance;
       }
 
       if (this.boundToFloor) {
-        vec3.y = 0.5 * (this.geometry.boundingBox.max.y - this.geometry.boundingBox.min.y) * this.scale.y + 0.01;
+        vec3.y =
+          0.5 *
+            (this.geometry.boundingBox.max.y -
+              this.geometry.boundingBox.min.y) *
+            this.scale.y +
+          0.01;
       } else {
         if (vec3.y < this.sizeY / 2.0 + tolerance) {
           vec3.y = this.sizeY / 2.0 + tolerance;

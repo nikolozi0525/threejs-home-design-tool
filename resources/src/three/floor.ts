@@ -3,7 +3,6 @@
 
 module BP3D.Three {
   export var Floor = function (scene, room) {
-
     var scope = this;
 
     this.room = room;
@@ -39,7 +38,7 @@ module BP3D.Three {
         side: THREE.DoubleSide,
         // ambient: 0xffffff, TODO_Ekki
         color: 0xcccccc,
-        specular: 0x0a0a0a
+        specular: 0x0a0a0a,
       });
 
       var textureScale = textureSettings.scale;
@@ -48,9 +47,9 @@ module BP3D.Three {
 
       var points = [];
       scope.room.interiorCorners.forEach((corner) => {
-        points.push(new THREE.Vector2(
-          corner.x / textureScale,
-          corner.y / textureScale));
+        points.push(
+          new THREE.Vector2(corner.x / textureScale, corner.y / textureScale),
+        );
       });
       var shape = new THREE.Shape(points);
 
@@ -69,14 +68,12 @@ module BP3D.Three {
       // setup texture
       var roofMaterial = new THREE.MeshBasicMaterial({
         side: THREE.FrontSide,
-        color: 0xe5e5e5
+        color: 0xe5e5e5,
       });
 
       var points = [];
       scope.room.interiorCorners.forEach((corner) => {
-        points.push(new THREE.Vector2(
-          corner.x,
-          corner.y));
+        points.push(new THREE.Vector2(corner.x, corner.y));
       });
       var shape = new THREE.Shape(points);
       var geometry = new THREE.ShapeGeometry(shape);
@@ -92,12 +89,12 @@ module BP3D.Three {
       //scene.add(roofPlane);
       // hack so we can do intersect testing
       scene.add(room.floorPlane);
-    }
+    };
 
     this.removeFromScene = function () {
       scene.remove(floorPlane);
       //scene.remove(roofPlane);
       scene.remove(room.floorPlane);
-    }
-  }
+    };
+  };
 }

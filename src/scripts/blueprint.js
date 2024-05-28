@@ -223,7 +223,7 @@ export class BlueprintJS {
       this.model,
       options.threeElement,
       options.threeCanvasElement,
-      {}
+      {},
     );
 
     if (!options.widget) {
@@ -233,7 +233,7 @@ export class BlueprintJS {
        **/
       this.floorplanner = new Floorplanner2D(
         options.floorplannerElement,
-        this.model.floorplan
+        this.model.floorplan,
       );
     } else {
       this.three.getController().enabled = false;
