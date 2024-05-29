@@ -1,0 +1,10 @@
+.floorplan-footer {
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
+
+  color: #9ba5a0;
+  background-color: #324b46;
+}
