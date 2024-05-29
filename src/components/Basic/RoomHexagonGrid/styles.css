@@ -1,6 +1,19 @@
 .roomgrid {
   height: 90%;
 
-  border: 2px solid darkgrey;
+  border: 3px solid #696464;
   border-radius: 15px;
+
+  background: white;
+  color: grey;
+}
+
+svg {
+}
+svg g {
+  fill: #fafafa;
+}
+svg g polygon {
+  stroke: grey;
+  stroke-width: 0.2;
 }
