@@ -1,73 +1,101 @@
-WebGL based 3D interior designing tool with 2D Floor Planer
-## About
-This is a customizable application built on three.js that allows users to design an interior space such as a home or apartment.
+# Code Canvas - Personal Portfolio
 
-[Live Demo](http://amitukind.com/projects/architect3d/)
+<h2>A portfolio template for developers 🧑‍💻</h2> 
+<!-- vscode-markdown-toc -->
+<h2>Table of Contents</h2>
 
-![](./images/architect3d.jpg)
+- [About](#About)
+- [Features](#features)
+- [Technologies Used](#technologies)
+- [Getting Started](#start)
+- [Prerequisites](#pre)
+- [How to use](#usage)
+- [Deployment](#deploy)
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h2 id="About">About</h2>
+Hey there! 👋 I'm Sohel, a passionate web and ML developer. I always love to build user-friendly and visually appealing websites especially using ReactJs or NextJs and also love to learn technologies related to web and data science. I've built this portfolio because :- 
+<br />
+<br />
+ 
+**1. It is a professional way to showcase work.** <br />
+**2. It's a Great First Impression For Employers.** <br />
+**3. Shows you’re more than just a resume.**
 
- Below are screenshots from  [Live Demo](http://amitukind.com/projects/architect3d/)
+<h2 id="features">Features</h2>
 
-1) Create 2D floorplan:
+⚡Modern UI Design + Reveal Animations <br />
+⚡Full Responsive <br />
+⚡Styled with Tailwind CSS <br />
+⚡Utlizied Threejs JS library <br />
+⚡Reusable UI components
 
-![floorplan](./images/floorplan2d.png)
+<h2 id="technologies">Technologies Used</h2>
 
-2) Add items:
+- **[React + Vitejs](https://vitejs.dev/guide/)** : Lightning-fast React development with Vitejs, the modern build tool for web development.
+- **[TailwindCSS](https://tailwindcss.com/docs/installation)** : Streamline your styling workflow with TailwindCSS, a utility-first CSS framework for building custom designs with ease.
+- **[Three.js](https://threejs.org/)** : Unlock the power of 3D graphics on the web with Three.js, a JavaScript library for creating stunning 3D visualizations and games.
+- **[Material UI](https://mui.com/material-ui/)** : Design beautiful, accessible, and responsive user interfaces with Material UI, a React UI framework based on Google's Material Design.
+- **[Framer Motion](https://www.framer.com/motion/)** : Bring your React components to life with Framer Motion, a production-ready motion library for creating fluid animations and interactive UIs.
 
-![add_items](./images/items.png)
+<h2 id="start">Getting Started 🚀</h2>
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-3) Design in 3D:
+<h2 id="pre">Prerequisites 📋</h2>
+You'll need <a href="https://git-scm.com/">Git</a> and <a href="https://nodejs.org/en/download/">Node.js</a> installed on your computer.
 
-![3d_design](./images/floorplan3d.png)
+<br />
+<br />
 
-## Developing and Running Locally
+```
+node@v16.4.2 or higher
+npm@7.18.1 or higher
+git@2.30.1 or higher
+```
+<h2 id="usage">How to use 🔧</h2>
+From your command line, first clone portfolio, Open up your command prompt in any directory and type following commands sequentially:
 
-To get started, clone the repository and ensure you npm >= 3 and rollup installed, then run:
+<br />
+<br />
 
-    npm install
-    rollup -c
-
-Rollup will only run if you have enabled command execution . If not run the following command first :
 ```bash
-//Windows 10
-Get-ExecutionPolicy -List
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Clone the repository
+$ git clone https://github.com/sohelkh1211/portfolio.git
+
+# Move into the repository
+$ cd portfolio
+
+# Remove the current origin repository
+$ git remote remove origin
 ```
-The latter command generates `build/js/bp3djs.js` from `src`. 
 
+After that, you can install the dependencies using NPM command.
+
+```bash
+# Install dependencies
+$ npm install --legacy-peer-deps
+
+# Start the development server
+$ npm run dev
 ```
-NODE_ENV=production rollup -c
-```
 
-The above command will generate `build/js/bp3djs.min.js` a minified and uglified version of the js. The easiest way to run locally is by
+Once your server has started, go to this url `http://localhost:5174/` to see the portfolio locally. It should look like the below screenshot.
 
-```
-     rollup -c -w
-```
-Then, visit `http://localhost:10001` in your browser.
+<h2 id="deploy">Deployment</h2>
+Once you finish your setup. You need to put your website online! <br />
+I highly recommend to use [Netlify](https://netlify.com) because it is super easy.
+<br />
+<br />
 
+Go to netlify and login with your Github account. After, successfully logged in:
 
-## Directory Structure
+1. Click on `Add new site` then click on `Import an existing project`.
+2. Click on `Deploy with Github`.
+3. Select your repo, which you wanna deploy and it's done 👍.
 
-### `src/` Directory
+<h2>Status</h2>
 
-The `src` directory contains the core of the project. Here is a description of the various sub-directories:
-
-`core` - Basic utilities such as logging and generic functions
-
-`floorplanner` - 2D view/controller for editing the floorplan
-
-`items` - Various types of items that can go in rooms
-
-`model` - Data model representing both the 2D floorplan and all of the items in it
-
-`three` - 3D view/controller for viewing and modifying item placement
-
-
-## DOCS ##
-Included
-
-
-
-## Author
-[@amitukind](https://github.com/amitukind/) | [Website](http://amitukind.com/) | [amitverma.ukind@gmail.com](mailto:amitverma.ukind@gmail.com)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3a029bfd-575c-41e5-8249-c864d482c2e5/deploy-status)](https://app.netlify.com/sites/sohel1211/deploys/65cd6e87665f8c0008898cb6)
