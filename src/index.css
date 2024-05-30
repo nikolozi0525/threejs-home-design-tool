@@ -1,12 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@1,100&family=Lora&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Diphylleia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@1,100&family=Lora&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -16,39 +15,45 @@
   /* margin: 0;
   padding: 0; */
   box-sizing: border-box;
-  font-family: "Diphylleia", 'Poppins';
+  font-family: "Diphylleia", "Poppins";
   scroll-behavior: smooth;
   color-scheme: light;
 }
 
 :root {
-  --gradient: linear-gradient(45deg,
-      #22d3ee,
-      #3c366b,
-      #6366f1,
-      #845ec2,
-      #d65db1,
-      #ed64a6);
+  --gradient: linear-gradient(
+    45deg,
+    #22d3ee,
+    #3c366b,
+    #6366f1,
+    #845ec2,
+    #d65db1,
+    #ed64a6
+  );
 }
 
-body{
+body {
   overflow-x: hidden;
 }
 
 html::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
-html::-webkit-scrollbar-track { 
+html::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #F5F5F5;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #f5f5f5;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+
 /* #83cdf7,#be6ff2 */
 html::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #be6ff2;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: black;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  overflow: auto;
 }
 
 .prof {
@@ -66,28 +71,29 @@ html::-webkit-scrollbar-thumb {
   display: block;
 }
 
-.love {
-  /* font-family: 'Lora', serif; */
-}
-
 .thanks {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }
 
 .fitness {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .fitness-about {
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
 }
 
 .tech-font {
-  font-family: 'Nova Square', sans-serif;
+  font-family: "Nova Square", sans-serif;
 }
 
 .slider {
-  background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+  background: linear-gradient(
+    109.6deg,
+    rgb(36, 45, 57) 11.2%,
+    rgb(16, 37, 60) 51.2%,
+    rgb(0, 0, 0) 98.6%
+  );
 }
 
 .fun-gradient {
@@ -117,7 +123,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .wave {
-  animation-name: wave-animation;  
+  animation-name: wave-animation;
   animation-duration: 2.5s;
   animation-delay: 1.2s;
   animation-iteration-count: infinite;
@@ -126,20 +132,36 @@ html::-webkit-scrollbar-thumb {
 }
 
 @keyframes wave-animation {
-    0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(14.0deg) }  
-   20% { transform: rotate(-8.0deg) }
-   30% { transform: rotate(14.0deg) }
-   40% { transform: rotate(-4.0deg) }
-   50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }  
-  100% { transform: rotate( 0.0deg) }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .stylish_number {
-  font-family: 'Lora';
+  font-family: "Lora";
   color: #ffffff;
-  -webkit-text-stroke: 1px #F8F8F8;
+  -webkit-text-stroke: 1px #f8f8f8;
   text-shadow: 0px 2px 4px blue;
   letter-spacing: 2px;
   /* text-shadow: -1px 1px 0 #41ba45,
@@ -150,16 +172,21 @@ html::-webkit-scrollbar-thumb {
 
 .bad-trip {
   background-color: #f2dd6e;
-  background-image: linear-gradient(319deg, #f2dd6e 0%, #cff27e 37%, #ef959d 100%);
+  background-image: linear-gradient(
+    319deg,
+    #f2dd6e 0%,
+    #cff27e 37%,
+    #ef959d 100%
+  );
 }
 
 .child {
   background-size: cover;
   background-repeat: no-repeat;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .container1:hover .child,
@@ -172,7 +199,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .fade-left {
-  transition: opacity 1s .2s ease-in, transform 1s .2s ease-in;
+  transition: opacity 1s 0.2s ease-in, transform 1s 0.2s ease-in;
 }
 
 @keyframes fade {
@@ -186,35 +213,36 @@ html::-webkit-scrollbar-thumb {
   }
 }
 
-
 .tech {
-  background-color: '';
+  background-color: "";
 }
 
 .tech:hover {
-  background-image: linear-gradient(45deg, #fbbfff 0%, #92e6ff 52%, #a5fecc 90%);
+  background-image: linear-gradient(
+    45deg,
+    #fbbfff 0%,
+    #92e6ff 52%,
+    #a5fecc 90%
+  );
 }
-
 
 .black-gradient {
   background: #000000;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right,
-      #434343,
-      #000000);
+  background: -webkit-linear-gradient(to right, #434343, #000000);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right,
-      #434343,
-      #000000);
+  background: linear-gradient(to right, #434343, #000000);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .violet-gradient {
   background: #804dee;
   background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(-90deg,
-      #804dee 0%,
-      rgba(60, 51, 80, 0) 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #804dee 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
 }
 
 .green-pink-gradient {
@@ -226,13 +254,9 @@ html::-webkit-scrollbar-thumb {
 .orange-text-gradient {
   background: #f12711;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #f12711,
-      #f5af19);
+  background: -webkit-linear-gradient(to top, #f12711, #f5af19);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #f12711,
-      #f5af19);
+  background: linear-gradient(to top, #f12711, #f5af19);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
@@ -241,13 +265,9 @@ html::-webkit-scrollbar-thumb {
 .green-text-gradient {
   background: #11998e;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #11998e,
-      #38ef7d);
+  background: -webkit-linear-gradient(to top, #11998e, #38ef7d);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #11998e,
-      #38ef7d);
+  background: linear-gradient(to top, #11998e, #38ef7d);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -257,13 +277,9 @@ html::-webkit-scrollbar-thumb {
   /* background: -webkit-linear-gradient(#eee, #333); */
   background: #56ccf2;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #2f80ed,
-      #56ccf2);
+  background: -webkit-linear-gradient(to top, #2f80ed, #56ccf2);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #2f80ed,
-      #56ccf2);
+  background: linear-gradient(to top, #2f80ed, #56ccf2);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -272,13 +288,9 @@ html::-webkit-scrollbar-thumb {
 .pink-text-gradient {
   background: #ec008c;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #ec008c,
-      #fc6767);
+  background: -webkit-linear-gradient(to top, #ec008c, #fc6767);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #ec008c,
-      #fc6767);
+  background: linear-gradient(to top, #ec008c, #fc6767);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -318,7 +330,7 @@ html::-webkit-scrollbar-thumb {
   }
 }
 
-@media (min-width:650px) {
+@media (min-width: 650px) {
   .c-scroll-icon {
     width: 21px;
     height: 90px;
@@ -330,7 +342,7 @@ html::-webkit-scrollbar-thumb {
   }
 }
 
-@media (max-width:650px) {
+@media (max-width: 650px) {
   .c-scroll-icon {
     width: 21px;
     height: 90px;
@@ -364,19 +376,19 @@ html::-webkit-scrollbar-thumb {
 
 @keyframes scroll-line {
   0% {
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
   }
 
   40% {
-    transform: translate3d(0, 185px, 0)
+    transform: translate3d(0, 185px, 0);
   }
 
   75% {
-    transform: translate3d(0, 175px, 0)
+    transform: translate3d(0, 175px, 0);
   }
 
   100% {
-    transform: translate3d(0, 280px, 0)
+    transform: translate3d(0, 280px, 0);
   }
 }
 
@@ -389,38 +401,38 @@ html::-webkit-scrollbar-thumb {
 }
 
 .c-scroll-icon-triangle-mask {
-  position: absolute
+  position: absolute;
 }
 
 .c-scroll-icon-triangle-mask.first {
   width: 40px;
   height: 5px;
   right: 0;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .c-scroll-icon-triangle-mask.right {
   width: 10px;
   height: 30px;
   overflow: hidden;
-  right: 0
+  right: 0;
 }
 
 .c-scroll-icon-triangle-mask.left {
   width: 10px;
   height: 30px;
   overflow: hidden;
-  left: 1
+  left: 1;
 }
 
 .c-scroll-icon-triangle-mask.last {
   width: 40px;
   height: 5px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .c-scroll-icon-triangle-line {
-  position: absolute
+  position: absolute;
 }
 
 .c-scroll-icon-triangle-line.first {
@@ -428,7 +440,7 @@ html::-webkit-scrollbar-thumb {
   width: 30px;
   right: 0;
   animation: triangle-first 3s infinite;
-  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86)
+  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 .c-scroll-icon-triangle-line.right {
@@ -438,7 +450,7 @@ html::-webkit-scrollbar-thumb {
   right: 5px;
   top: -6px;
   animation: triangle-right 3s infinite;
-  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86)
+  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 .c-scroll-icon-triangle-line.left {
@@ -450,7 +462,7 @@ html::-webkit-scrollbar-thumb {
   animation: triangle-left 3s infinite;
   transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden
+  backface-visibility: hidden;
 }
 
 .c-scroll-icon-triangle-line.last {
@@ -458,93 +470,89 @@ html::-webkit-scrollbar-thumb {
   width: 120px;
   left: 0;
   animation: triangle-last 3s infinite;
-  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86)
+  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 @keyframes triangle-bounce {
   0% {
-    transform: translate3d(0, -5px, 0)
+    transform: translate3d(0, -5px, 0);
   }
 
   50% {
-    transform: translate3d(0, 5px, 0)
+    transform: translate3d(0, 5px, 0);
   }
 
   100% {
-    transform: translate3d(0, -5px, 0)
+    transform: translate3d(0, -5px, 0);
   }
 }
 
 @keyframes triangle-first {
-
   0%,
   20% {
-    transform: translate3d(-40px, 0, 0)
+    transform: translate3d(-40px, 0, 0);
   }
 
   30%,
   80% {
-    transform: translate3d(10px, 0, 0)
+    transform: translate3d(10px, 0, 0);
   }
 
   85%,
   100% {
-    transform: translate3d(30px, 0, 0)
+    transform: translate3d(30px, 0, 0);
   }
 }
 
 @keyframes triangle-right {
-
   0%,
   25% {
-    transform: rotate(-163deg) translate3d(0, 40px, 0)
+    transform: rotate(-163deg) translate3d(0, 40px, 0);
   }
 
   40%,
   84% {
-    transform: rotate(-163deg) translate3d(0, 0, 0)
+    transform: rotate(-163deg) translate3d(0, 0, 0);
   }
 
   90%,
   100% {
-    transform: rotate(-163deg) translate3d(0, -37px, 0)
+    transform: rotate(-163deg) translate3d(0, -37px, 0);
   }
 }
 
 @keyframes triangle-left {
-
   0%,
   33% {
-    transform: rotate(163deg) translate3d(0, -34px, 0)
+    transform: rotate(163deg) translate3d(0, -34px, 0);
   }
 
   50%,
   88% {
-    transform: rotate(163deg) translate3d(0, 0, 0)
+    transform: rotate(163deg) translate3d(0, 0, 0);
   }
 
   95%,
   100% {
-    transform: rotate(163deg) translate3d(0, 38px, 0)
+    transform: rotate(163deg) translate3d(0, 38px, 0);
   }
 }
 
 @keyframes triangle-last {
-
   0%,
   87.5% {
-    transform: translate3d(-120px, 0, 0)
+    transform: translate3d(-120px, 0, 0);
   }
 
   91% {
-    transform: translate3d(-80px, 0, 0)
+    transform: translate3d(-80px, 0, 0);
   }
 
   100% {
-    transform: translate3d(45px, 0, 0)
+    transform: translate3d(45px, 0, 0);
   }
 }
 
 .vertical_content {
-  font-family: 'EB+Garamond';
+  font-family: "EB+Garamond";
 }
