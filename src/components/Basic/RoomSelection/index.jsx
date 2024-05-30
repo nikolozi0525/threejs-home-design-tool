@@ -12,7 +12,6 @@ const RoomSelection = ({}) => {
 
   return (
     <div className="relative flex overflow-hidden bg-gray-50">
-      <div className="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
       <div className="relative bg-white pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
         <div className="mx-auto max-w-md">
           <div className="divide-y divide-gray-300/50">
@@ -39,7 +38,7 @@ const RoomSelection = ({}) => {
                         points="200,50 350,125 350,275 200,350 50,275 50,125"
                         fill={item.color || `#${Math.floor(Math.random())}`}
                         stroke="black"
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                     </svg>
                     <div className="ml-4 grow text-center">
@@ -68,9 +67,9 @@ const RoomSelection = ({}) => {
               viewBox="-3 -9 30 30"
               fill="none"
               stroke="blue"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
