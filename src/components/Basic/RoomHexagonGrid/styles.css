@@ -1,24 +1,25 @@
 .room-grid {
-  /* display: flex; */
+  display: flex;
   --s: 100px; /* size  */
   --m: 4px; /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
 }
 
 .container {
-  z-index: 1;
-  height: 90vh;
-  overflow: hidden;
-  /* text-align: center; */
   border: 3px solid #696464;
   border-radius: 15px;
+  overflow: hidden;
+  height: 90vh;
+}
 
+.container .hexagonContent {
+  height: 115vh;
+  /* text-align: center; */
   padding: -10%;
-
   font-size: 0px;
 }
 
-.hexagon {
+.container .hexagonContent div {
   margin: var(--m);
   width: var(--s);
   height: calc(var(--s) * 1.1547);
@@ -47,11 +48,7 @@
   background-color: #fafafa71;
 }
 
-.drag-hover {
-  background-color: #fafafa71;
-}
-
-.container::before {
+.container .hexagonContent::before {
   content: "";
   width: calc(var(--s) / 2 + var(--m));
   float: left;
@@ -60,14 +57,4 @@
     #0000 0 calc(var(--f) - 3px),
     #000 0 var(--f)
   );
-}
-
-.line {
-  position: absolute;
-  left: 46%; /* Position it in the middle horizontally */
-  top: 0;
-  bottom: 0;
-  width: 8px; /* Width of the line */
-  background-color: transparent; /* Color of the line */
-  border: 2px solid #d2d2d2;
 }

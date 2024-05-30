@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import Compass from "../Compass";
 import roomListData from "../RoomInfo";
 
 import "./styles.css";
 
 const RoomHexagonGrid = () => {
+  const [angle, setAngle] = useState(0);
+
   const [roomData, setRoomData] = useState([
     { index: 25, room: "Dinnig Room", color: "#D1C2F9" },
     { index: 33, room: "Living Room", color: "#EAB8B8" },
@@ -52,44 +54,54 @@ const RoomHexagonGrid = () => {
     }
   };
 
+  const setAngleContainer = (value) => {
+    setAngle(value);
+  };
+
   return (
     <div className="room-grid">
-      <div className="container">
-        {Array(400)
-          .fill(0)
-          .map((_, index) => {
-            const existRoomData = roomData.find((one) => {
-              return one.index == index;
-            });
-            return (
-              <div
-                className={`hexagon`}
-                key={index}
-                onDragOver={onDragOver}
-                onDragLeave={onDragLeave}
-                onDragStart={(ev) => onDragStart(ev, existRoomData)}
-                onDrop={(ev) => onDrop(ev, index)}
-                draggable
-              >
-                {/* <>
+      <Compass callback={setAngleContainer} />
+      <div className="container" style={{ overflowX: "scroll" }}>
+        <div
+          className="hexagonContent"
+          style={{ transform: `rotate(${angle}deg)`, width: "1340px" }}
+        >
+          {Array(400)
+            .fill(0)
+            .map((_, index) => {
+              const existRoomData = roomData.find((one) => {
+                return one.index == index;
+              });
+              return (
+                <div
+                  className={`hexagon`}
+                  key={index}
+                  onDragOver={onDragOver}
+                  onDragLeave={onDragLeave}
+                  onDragStart={(ev) => onDragStart(ev, existRoomData)}
+                  onDrop={(ev) => onDrop(ev, index)}
+                  draggable
+                >
+                  {/* <>
                     <span className={`inner`}></span>
                     <div className="line"></div>
                   </> */}
 
-                <span
-                  id={`grid-inner-${index}`}
-                  className={`inner `}
-                  style={
-                    existRoomData
-                      ? {
-                          backgroundColor: existRoomData.color,
-                        }
-                      : {}
-                  }
-                ></span>
-              </div>
-            );
-          })}
+                  <span
+                    id={`grid-inner-${index}`}
+                    className={`inner `}
+                    style={
+                      existRoomData
+                        ? {
+                            backgroundColor: existRoomData.color,
+                          }
+                        : {}
+                    }
+                  ></span>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
