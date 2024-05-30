@@ -1,9 +1,22 @@
-import React from "react";
-
+import React, { Component } from "react";
 import "./styles.css";
 
-const RoomHexagonGrid = () => {
-  return <div className="roomgrid grow">grid</div>;
-};
+class RoomHexagonGrid extends Component {
+  render() {
+    return (
+      <div className="room-grid">
+        <div className="container">
+          {Array(100)
+            .fill(0)
+            .map(() => (
+              <div>
+                <span className="inner"></span>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default RoomHexagonGrid;
