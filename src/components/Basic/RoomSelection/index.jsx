@@ -1,27 +1,8 @@
 import React, { useState } from "react";
-import { space } from "postcss/lib/list";
-import styled from "@emotion/styled";
-import "./index.css";
 
-const roomListData = [
-  "Bedroom",
-  "Living Room",
-  "Bathroom",
-  "Kitchen",
-  "Kid's Bedroom",
-  "Dinnig Room",
-  "Single Bathroom",
-  "Double Bathroom",
-  "Bath/Closet",
-  "Gym",
-  "Music Room",
-  "Office",
-  "Workshop",
-  "Theartre",
-  "Storage",
-  "Game Room",
-  "Empty",
-];
+import roomListData from "../RoomInfo";
+
+import "./index.css";
 
 const RoomSelection = ({}) => {
   const handleScroll = () => {
@@ -35,10 +16,18 @@ const RoomSelection = ({}) => {
       <div className="relative bg-white pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
         <div className="mx-auto max-w-md">
           <div className="divide-y divide-gray-300/50">
-            <div className="space-y-6 py-8 text-base leading-7 text-gray-600">
+            <div className="space-y-6 py-5 text-base leading-7 text-gray-600">
               <ul className="roomList space-y-4">
-                {roomListData.map((item) => (
-                  <li className="flex items-center border-gray-300 border rounded-xl shadow-[0_0_2px] bg-gray-100 p-3">
+                {roomListData.map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center border-gray-300 border rounded-xl shadow-[0_0_2px] bg-gray-100 p-3"
+                    draggable
+                    onDragStart={(ev) => {
+                      ev.dataTransfer.setData("selectedRoom", item.name);
+                      ev.dataTransfer.setData("selectedRoomColor", item.color);
+                    }}
+                  >
                     <svg
                       className="h-2/5 w-2/5 flex-none fill-sky-100 stroke-sky-500 stroke-2"
                       xmlns="http://www.w3.org/2000/svg"
@@ -48,17 +37,17 @@ const RoomSelection = ({}) => {
                     >
                       <polygon
                         points="200,50 350,125 350,275 200,350 50,275 50,125"
-                        fill={`#${Math.floor(Math.random())}`}
+                        fill={item.color || `#${Math.floor(Math.random())}`}
                         stroke="black"
                         stroke-width="2"
                       />
                     </svg>
-                    <div className="ml-4">
+                    <div className="ml-4 grow text-center">
                       <div>
-                        <p className="font-bold w-full">{item}</p>
+                        <h3 className="font-bold w-full">{item.name}</h3>
                       </div>
                       <div className="px-3 position-relative">
-                        <p>$15,000</p>
+                        <h3>{`$${item.price}`}</h3>
                       </div>
                     </div>
                   </li>
