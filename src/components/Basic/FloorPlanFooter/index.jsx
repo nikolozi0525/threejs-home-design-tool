@@ -2,11 +2,11 @@ import React from "react";
 
 import "./styles.css";
 
-const FloorPlanFooter = () => {
+const FloorPlanFooter = ({ rooms, total }) => {
   return (
     <div className="floorplan-footer mt-2">
-      <div>Total: $20,000</div>
-      <div>0 Pods</div>
+      <div>Total: ${total}</div>
+      <div>{rooms.length} Pods</div>
       <div>Step: 1/4</div>
     </div>
   );

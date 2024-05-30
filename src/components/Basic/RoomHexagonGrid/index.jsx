@@ -39,7 +39,6 @@ const RoomHexagonGrid = () => {
     const selectedRoom = ev.dataTransfer.getData("selectedRoom");
     const selectedRoomColor = ev.dataTransfer.getData("selectedRoomColor");
 
-    console.log("####", selectedRoom, selectedRoomColor);
     if (selectedRoom) {
       setRoomData([
         ...roomData,
