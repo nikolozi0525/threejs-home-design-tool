@@ -42,6 +42,10 @@
   background-color: #fafafa;
 }
 
+.inner:hover {
+  background-color: #fafafa71;
+}
+
 .container::before {
   content: "";
   width: calc(var(--s) / 2 + var(--m));
