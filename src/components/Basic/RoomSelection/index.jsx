@@ -25,20 +25,18 @@ const roomListData = [
 
 const RoomSelection = ({}) => {
   const handleScroll = () => {
-    window.scrollTo({
-      top: document.getElementById("listContainer").scrollHeight,
-      behavior: "smooth",
-    });
+    document.getElementsByClassName("roomList")[0].scrollTop =
+      document.getElementsByClassName("roomList")[0].scrollHeight;
   };
 
   return (
-    <div className="relative flex overflow-hidden bg-gray-50 py-6 sm:py-12">
+    <div className="relative flex overflow-hidden bg-gray-50">
       <div className="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-      <div className="relative bg-white pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+      <div className="relative bg-white pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
         <div className="mx-auto max-w-md">
           <div className="divide-y divide-gray-300/50">
             <div className="space-y-6 py-8 text-base leading-7 text-gray-600">
-              <ul id="listContainer" className="roomList space-y-4">
+              <ul className="roomList space-y-4">
                 {roomListData.map((item) => (
                   <li className="flex items-center border-gray-300 border rounded-xl shadow-[0_0_2px] bg-gray-100 p-3">
                     <svg
@@ -72,7 +70,7 @@ const RoomSelection = ({}) => {
         <div className="flex w-full h-full justify-center">
           <a
             className="scroll shadow-[0_0_7px] flex justify-center"
-            onClick={() => handleScroll(50)}
+            onClick={() => handleScroll()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
