@@ -7,14 +7,9 @@ import {
 } from "./actions";
 
 export const initialState = {
-  rooms: [
-    { index: 39, room: "Kid's Bedroom", color: "#CDF0FF", price: "15000" },
-    { index: 50, room: "Dinnig Room", color: "#D1C2F9", price: "15000" },
-    { index: 49, room: "Single Bathroom", color: "#D6FEBD", price: "15000" },
-    { index: 38, room: "Double Bathroom", color: "#EAB8B8", price: "15000" },
-  ],
+  rooms: [{ index: 50, room: "Dinnig Room", color: "#D1C2F9", price: "15000" }],
   customRoom: { index: null, name: "", price: 0, furniture: [] },
-  total: 0,
+  total: 15000,
 };
 
 export default (state = initialState, { type, payload }) => {
