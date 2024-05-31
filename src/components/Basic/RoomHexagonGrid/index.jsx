@@ -44,14 +44,14 @@ const RoomHexagonGrid = () => {
   const onDrop = (ev, index) => {
     ev.preventDefault();
     const selectedRoom = ev.dataTransfer.getData("selectedRoom");
-    const selectedRoomColor = ev.dataTransfer.getData("selectedRoomColor");
-    const selectedRoomPrice = roomListData.find(
-      (one) => one.name == selectedRoom
-    ).price;
 
     const existRoomInfo = rooms.find((one) => one.index == index);
 
     if (selectedRoom) {
+      const selectedRoomColor = ev.dataTransfer.getData("selectedRoomColor");
+      const selectedRoomPrice = roomListData.find(
+        (one) => one.name == selectedRoom
+      ).price;
       let newRoomData = [...rooms];
       if (existRoomInfo) {
         newRoomData = newRoomData.filter(
