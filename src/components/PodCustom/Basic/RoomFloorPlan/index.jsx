@@ -8,7 +8,7 @@ import "./styles.css";
 
 const RoomHexagonGrid = () => {
   const {
-    room: { rooms },
+    room: { rooms, customRoom },
     selectRoom,
   } = useRooms();
 
@@ -43,9 +43,11 @@ const RoomHexagonGrid = () => {
                   key={index}
                   style={
                     existRoomData
-                      ? {
-                          backgroundColor: "black",
-                        }
+                      ? existRoomData.index == customRoom.index
+                        ? { backgroundColor: "blue" }
+                        : {
+                            backgroundColor: "black",
+                          }
                       : {}
                   }
                   // onMouseOver={(ev) => {

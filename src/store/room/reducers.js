@@ -40,7 +40,7 @@ export default (state = initialState, { type, payload }) => {
     case SELECT_ROOM:
       return {
         ...state,
-        customRoom: { ...state.customRoom, ...payload },
+        customRoom: { ...payload },
       };
     case CHANGE_ROOM:
       return {

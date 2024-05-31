@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 import BlackImg from "@/assets/img/1.png";
@@ -9,12 +9,24 @@ import CloseSvg from "@/assets/img/close.svg";
 import FurnitureListData from "@/consts/FurnitureInfo";
 import RoomListData from "@/consts/RoomInfo";
 
+import useRooms from "@/store/room/hooks/useRooms";
+
 import "./styles.css";
+import { Close } from "@mui/icons-material";
 
 const PodCustomRightBar = ({ room }) => {
+  const { changeRoom } = useRooms();
+
   const handleScroll = () => {
     document.getElementsByClassName("roomList")[0].scrollTop =
       document.getElementsByClassName("roomList")[0].scrollHeight;
+  };
+
+  const handleFurnitureFull = () => {
+    changeRoom({ index: room.index, furniture: FurnitureListData });
+  };
+  const handleFurnitureNone = () => {
+    changeRoom({ index: room.index, furniture: [] });
   };
 
   return (
@@ -26,7 +38,7 @@ const PodCustomRightBar = ({ room }) => {
         getOptionLabel={(option) => option.name}
         getOptionValue={(option) => option.name}
         onChange={(val) => {
-          console.log("3333", val);
+          changeRoom({ ...room, ...val });
         }}
         value={{ ...room, name: room.room }}
         placeholder={<div>Room Type</div>}
@@ -34,14 +46,34 @@ const PodCustomRightBar = ({ room }) => {
       <div>Please select the type of</div>
       <div>furnishing you would like</div>
 
-      <div className="custom-bar-furnishing">
-        <img src={BlackImg} alt="black" />
+      <div
+        className="custom-bar-furnishing"
+        style={
+          room.furniture && room.furniture.length == FurnitureListData.length
+            ? {
+                backgroundColor: "#324646",
+              }
+            : {}
+        }
+        onClick={handleFurnitureFull}
+      >
+        <img src={BlackImg} alt="black" className="md:w-25 md:h-25" />
         <p>
           <strong>Fully Furnished</strong>
         </p>
       </div>
-      <div className="custom-bar-furnishing">
-        <img src={ColorImg} alt="color" />
+      <div
+        className="custom-bar-furnishing"
+        style={
+          !room.furniture || room.furniture.length == 0
+            ? {
+                backgroundColor: "#324646",
+              }
+            : {}
+        }
+        onClick={handleFurnitureNone}
+      >
+        <img src={ColorImg} alt="color" className="md:w-25 md:h-25" />
         <p>
           <strong>No Furnishing</strong>
         </p>
@@ -50,8 +82,30 @@ const PodCustomRightBar = ({ room }) => {
         <p>Additional Appliances:</p>
         {FurnitureListData.map((one) => {
           return (
-            <div key={one.name} className="custom-bar-appliance">
-              <img src={AddPlusSvg} alt="" />
+            <div
+              key={one.name}
+              className="custom-bar-appliance"
+              onClick={() => {
+                if (room.furniture && room.furniture.includes(one)) {
+                  changeRoom({
+                    index: room.index,
+                    furniture: room.furniture.filter(
+                      (item) => item.name != one.name
+                    ),
+                  });
+                } else {
+                  changeRoom({
+                    index: room.index,
+                    furniture: [...room.furniture, one],
+                  });
+                }
+              }}
+            >
+              {room.furniture && room.furniture.includes(one) ? (
+                <img src={CloseSvg} alt="" />
+              ) : (
+                <img src={AddPlusSvg} alt="" />
+              )}
               <span>
                 <strong>{one.name}</strong>
               </span>
