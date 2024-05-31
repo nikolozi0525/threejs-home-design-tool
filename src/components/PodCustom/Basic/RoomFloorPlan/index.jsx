@@ -70,6 +70,11 @@ const RoomHexagonGrid = () => {
                         : {}
                     }
                   ></span>
+                  {existRoomData && (
+                    <span className="custom-hexagon-tooltip">
+                      {existRoomData.room}
+                    </span>
+                  )}
                 </div>
               );
             })}
