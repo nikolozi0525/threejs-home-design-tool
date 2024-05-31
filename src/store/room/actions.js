@@ -21,7 +21,7 @@ export const removeRoom = (payload) => ({
 
 export const selectRoom = (payload) => ({
   type: SELECT_ROOM,
-  payload,
+  payload: payload.furniture ? payload : { ...payload, furniture: [] },
 });
 
 export const changeRoom = (payload) => ({
