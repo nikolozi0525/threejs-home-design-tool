@@ -70,6 +70,8 @@ const RoomHexagonGrid = () => {
         price: selectedRoomPrice,
       });
 
+      console.log("3333", rooms);
+
       ev.target.style.backgroundColor = `${selectedRoomColor}`;
       ev.target.className = ev.target.className.replace(/drag-hover/g, "");
     } else {
@@ -82,11 +84,11 @@ const RoomHexagonGrid = () => {
   };
 
   return (
-    <div className="room-grid">
+    <div className="room-floorplan">
       <Compass callback={setAngleContainer} />
-      <div className="container" style={{ overflowX: "scroll" }}>
+      <div className="room-floorplan-container" style={{ overflowX: "scroll" }}>
         <div
-          className="hexagonContent"
+          className="custom-hexagonContent"
           style={{ transform: `rotate(${angle}deg)`, width: "1340px" }}
         >
           {Array(400)
@@ -97,13 +99,20 @@ const RoomHexagonGrid = () => {
               });
               return (
                 <div
-                  className={`hexagon`}
+                  className={`custom-hexagon`}
                   key={index}
                   onDragOver={onDragOver}
                   onDragLeave={onDragLeave}
                   onDragStart={(ev) => onDragStart(ev, existRoomData)}
                   onDrop={(ev) => onDrop(ev, index)}
                   draggable
+                  style={
+                    existRoomData
+                      ? {
+                          backgroundColor: "black",
+                        }
+                      : {}
+                  }
                 >
                   {/* <>
                     
@@ -114,7 +123,7 @@ const RoomHexagonGrid = () => {
 
                   <span
                     id={`grid-inner-${index}`}
-                    className={`inner `}
+                    className={`custom-inner `}
                     style={
                       existRoomData
                         ? {

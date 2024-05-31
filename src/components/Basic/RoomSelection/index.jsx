@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import roomListData from "../RoomInfo";
+import roomListData from "@/consts/RoomInfo";
 
 import "./index.css";
 

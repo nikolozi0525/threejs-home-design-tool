@@ -4,6 +4,7 @@
 import About from "./About";
 import Contact from "./Contact";
 import Body from "./Body";
+import PodCustom from "./PodCustom/index.jsx";
 import Footer from "./Footer";
 
-export { About, Contact, Body, Footer };
+export { About, Contact, Body, PodCustom, Footer };
