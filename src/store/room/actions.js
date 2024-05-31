@@ -1,5 +1,6 @@
 export const GET_ROOMS = "rooms/GET_ROOMS";
 export const ADD_ROOM = "rooms/ADD_ROOM";
+export const REMOVE_ROOM = "rooms/REMOVE_ROOM";
 
 export const getRooms = (payload) => ({
   type: GET_ROOMS,
@@ -8,5 +9,10 @@ export const getRooms = (payload) => ({
 
 export const addRoom = (payload) => ({
   type: ADD_ROOM,
+  payload,
+});
+
+export const removeRoom = (payload) => ({
+  type: REMOVE_ROOM,
   payload,
 });
