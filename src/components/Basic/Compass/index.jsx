@@ -41,7 +41,7 @@ const Compass = ({ callback }) => {
         className="compass"
         onMouseDown={(e) => handleMouseDown(e)}
         onMouseUp={(e) => handleMouseUp(e)}
-        onMouseleave={(e) => handleMouseUp(e)}
+        onMouseLeave={(e) => handleMouseUp(e)}
       >
         <div
           className="compass-dial"

@@ -13,6 +13,8 @@ const RoomHexagonGrid = () => {
     removeRoom,
   } = useRooms();
 
+  const [angle, setAngle] = useState(0);
+
   const onDragOver = (ev) => {
     ev.preventDefault();
     if (!ev.target.className.includes("drag-hover")) {
@@ -90,7 +92,7 @@ const RoomHexagonGrid = () => {
           {Array(400)
             .fill(0)
             .map((_, index) => {
-              const existRoomData = roomData.find((one) => {
+              const existRoomData = rooms.find((one) => {
                 return one.index == index;
               });
               return (
