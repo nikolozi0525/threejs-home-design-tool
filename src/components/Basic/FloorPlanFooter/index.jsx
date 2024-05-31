@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -7,7 +8,9 @@ const FloorPlanFooter = ({ rooms, total }) => {
     <div className="floorplan-footer mt-2">
       <div>Total: ${total}</div>
       <div>{rooms.length} Pods</div>
-      <div>Step: 1/4</div>
+      <div>
+        <Link to={"/2d-custom"}>Step: 1/4</Link>
+      </div>
     </div>
   );
 };

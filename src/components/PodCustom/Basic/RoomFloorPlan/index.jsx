@@ -50,14 +50,6 @@ const RoomHexagonGrid = () => {
                           }
                       : {}
                   }
-                  // onMouseOver={(ev) => {
-                  //   if (existRoomData) {
-                  //     ev.target.style.backgroundColor = "lightgreen";
-                  //   }
-                  // }}
-                  // onMouseLeave={(ev) => {
-                  //   ev.target.style.backgroundColor = "#ebebeb";
-                  // }}
                   onClick={(ev) => onSelect(index)}
                 >
                   {/* <>
