@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useStateValue } from "../../index";
-import { addRoom } from "../actions";
+import { addRoom, removeRoom as removeRoomAction } from "../actions";
 
 const useRooms = () => {
   const [{ room }, dispatch] = useStateValue();
@@ -11,7 +11,11 @@ const useRooms = () => {
     dispatch(addRoom(payload));
   };
 
-  return [room, isLoading, addNewRoom];
+  const removeRoom = (payload) => {
+    dispatch(removeRoomAction(payload));
+  };
+
+  return { room, isLoading, addNewRoom, removeRoom };
 };
 
 export default useRooms;

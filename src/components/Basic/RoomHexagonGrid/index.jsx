@@ -2,18 +2,16 @@ import React, { useState, useEffect } from "react";
 import Compass from "../Compass";
 import roomListData from "../RoomInfo";
 
+import useRooms from "@/store/room/hooks/useRooms";
+
 import "./styles.css";
 
 const RoomHexagonGrid = () => {
-  const [angle, setAngle] = useState(0);
-
-  const [roomData, setRoomData] = useState([
-    { index: 25, room: "Dinnig Room", color: "#D1C2F9" },
-    { index: 33, room: "Living Room", color: "#EAB8B8" },
-    { index: 32, room: "Dinnig Room", color: "#D1C2F9" },
-    { index: 26, room: "Single Bathroom", color: "#D6FEBD" },
-    { index: 34, room: "Double Bathroom", color: "#EAB8B8" },
-  ]); // {index: hexagon_id, room: room_name, color: room_color }
+  const {
+    room: { rooms },
+    addNewRoom,
+    removeRoom,
+  } = useRooms();
 
   const onDragOver = (ev) => {
     ev.preventDefault();
@@ -29,23 +27,46 @@ const RoomHexagonGrid = () => {
   };
 
   const onDragStart = (ev, roomInfo) => {
-    ev.dataTransfer.setData("selectedRoom", roomInfo.room);
-    ev.dataTransfer.setData("selectedRoomColor", roomInfo.color);
+    if (roomInfo) {
+      ev.dataTransfer.setData("selectedRoom", roomInfo.room);
+      ev.dataTransfer.setData("selectedRoomColor", roomInfo.color);
 
-    setRoomData(roomData.filter((one) => one.index != roomInfo.index));
-    // ev.target.style.backgroundColor = `#fafafa71`;
+      const selectedRoomPrice = roomListData.find(
+        (one) => one.name == roomInfo.room
+      ).price;
+
+      removeRoom({ ...roomInfo, price: selectedRoomPrice });
+    }
   };
 
   const onDrop = (ev, index) => {
     ev.preventDefault();
     const selectedRoom = ev.dataTransfer.getData("selectedRoom");
     const selectedRoomColor = ev.dataTransfer.getData("selectedRoomColor");
+    const selectedRoomPrice = roomListData.find(
+      (one) => one.name == selectedRoom
+    ).price;
+
+    const existRoomInfo = rooms.find((one) => one.index == index);
 
     if (selectedRoom) {
-      setRoomData([
-        ...roomData,
-        { index, room: selectedRoom, color: selectedRoomColor },
-      ]);
+      let newRoomData = [...rooms];
+      if (existRoomInfo) {
+        newRoomData = newRoomData.filter(
+          (one) => one.index != existRoomInfo.index
+        );
+
+        const existRoomPrice = roomListData.find(
+          (one) => one.name == existRoomInfo.room
+        ).price;
+        removeRoom({ ...existRoomInfo, price: existRoomPrice });
+      }
+      addNewRoom({
+        index,
+        room: selectedRoom,
+        color: selectedRoomColor,
+        price: selectedRoomPrice,
+      });
 
       ev.target.style.backgroundColor = `${selectedRoomColor}`;
       ev.target.className = ev.target.className.replace(/drag-hover/g, "");
@@ -83,7 +104,9 @@ const RoomHexagonGrid = () => {
                   draggable
                 >
                   {/* <>
-                    <span className={`inner`}></span>
+                    
+
+<span className={`inner`}></span>
                     <div className="line"></div>
                   </> */}
 
