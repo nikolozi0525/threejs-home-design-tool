@@ -1,4 +1,10 @@
-import { GET_ROOMS, ADD_ROOM, REMOVE_ROOM } from "./actions";
+import {
+  GET_ROOMS,
+  ADD_ROOM,
+  REMOVE_ROOM,
+  CHANGE_ROOM,
+  SELECT_ROOM,
+} from "./actions";
 
 export const initialState = {
   rooms: [
@@ -7,7 +13,7 @@ export const initialState = {
     { index: 49, room: "Single Bathroom", color: "#D6FEBD", price: "15000" },
     { index: 38, room: "Double Bathroom", color: "#EAB8B8", price: "15000" },
   ],
-  customRoom: { name: "", price: 0, furniture: [] },
+  customRoom: { index: null, name: "", price: 0, furniture: [] },
   total: 0,
 };
 
@@ -30,6 +36,21 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         rooms: state.rooms.filter((one) => one.index != payload.index),
         total: state.total - Number(payload.price),
+      };
+    case SELECT_ROOM:
+      return {
+        ...state,
+        customRoom: { ...state.customRoom, ...payload },
+      };
+    case CHANGE_ROOM:
+      return {
+        ...state,
+        rooms: state.rooms.map((one) => {
+          if (one.index == payload.index) {
+            return { ...one, ...payload };
+          } else return one;
+        }),
+        customRoom: { ...state.customRoom, ...payload },
       };
 
     default:

@@ -1,6 +1,8 @@
 export const GET_ROOMS = "rooms/GET_ROOMS";
 export const ADD_ROOM = "rooms/ADD_ROOM";
 export const REMOVE_ROOM = "rooms/REMOVE_ROOM";
+export const SELECT_ROOM = "rooms/SELECT_ROOM";
+export const CHANGE_ROOM = "rooms/CHANGE_ROOM";
 
 export const getRooms = (payload) => ({
   type: GET_ROOMS,
@@ -14,5 +16,15 @@ export const addRoom = (payload) => ({
 
 export const removeRoom = (payload) => ({
   type: REMOVE_ROOM,
+  payload,
+});
+
+export const selectRoom = (payload) => ({
+  type: SELECT_ROOM,
+  payload,
+});
+
+export const changeRoom = (payload) => ({
+  type: CHANGE_ROOM,
   payload,
 });

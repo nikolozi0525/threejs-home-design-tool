@@ -28,7 +28,7 @@ const PodCustomRightBar = ({ room }) => {
         onChange={(val) => {
           console.log("3333", val);
         }}
-        value={room}
+        value={{ ...room, name: room.room }}
         placeholder={<div>Room Type</div>}
       ></Select>
       <div>Please select the type of</div>
