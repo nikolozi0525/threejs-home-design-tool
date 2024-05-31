@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select from "react-select";
 
 import BlackImg from "@/assets/img/1.png";
 import ColorImg from "@/assets/img/2.png";
@@ -6,6 +7,7 @@ import AddPlusSvg from "@/assets/img/add-plus.svg";
 import CloseSvg from "@/assets/img/close.svg";
 
 import FurnitureListData from "@/consts/FurnitureInfo";
+import RoomListData from "@/consts/RoomInfo";
 
 import "./styles.css";
 
@@ -18,7 +20,17 @@ const PodCustomRightBar = ({ room }) => {
   return (
     <div className="custom-bar">
       <p>Room Type:</p>
-      <h2>Bathroom</h2>
+      <Select
+        className="custom-bar-roomtype"
+        options={RoomListData}
+        getOptionLabel={(option) => option.name}
+        getOptionValue={(option) => option.name}
+        onChange={(val) => {
+          console.log("3333", val);
+        }}
+        value={room}
+        placeholder={<div>Room Type</div>}
+      ></Select>
       <div>Please select the type of</div>
       <div>furnishing you would like</div>
 
