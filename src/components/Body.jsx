@@ -14,12 +14,12 @@ const Body = () => {
   } = useRooms();
   return (
     <div className="grid grid-cols-12">
-      <div className="sm:col-span-12 md:col-span-9 flex flex-col px-5 pt-5">
+      <div className="xs:col-span-12 sm:col-span-12 md:col-span-9 flex flex-col px-5 pt-5">
         <RoomHexagonGrid />
         <FloorPlanFooter rooms={rooms} total={total} />
       </div>
       <div
-        className="roomList sm:col-span-12 md:col-span-3 w-full overflow-auto"
+        className="roomList xs:col-span-12 sm:col-span-12 md:col-span-3 w-full overflow-auto"
         style={{ height: "97vh" }}
       >
         <RoomSelection />

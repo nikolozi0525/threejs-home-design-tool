@@ -82,9 +82,12 @@ const RoomHexagonGrid = () => {
   };
 
   return (
-    <div className="room-grid">
+    <div className="room-grid ">
       <Compass callback={setAngleContainer} />
-      <div className="container" style={{ overflowX: "scroll" }}>
+      <div
+        className="container sm:m-auto xs:m-auto"
+        style={{ overflowX: "scroll" }}
+      >
         <div
           className="hexagonContent"
           style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
