@@ -87,7 +87,7 @@ const RoomHexagonGrid = () => {
       <div className="container" style={{ overflowX: "scroll" }}>
         <div
           className="hexagonContent"
-          style={{ transform: `rotate(${angle}deg)`, width: "1340px" }}
+          style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
         >
           {Array(400)
             .fill(0)
