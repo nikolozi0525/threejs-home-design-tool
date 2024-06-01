@@ -85,7 +85,7 @@ const RoomHexagonGrid = () => {
     <div className="room-grid ">
       <Compass callback={setAngleContainer} />
       <div
-        className="container sm:m-auto xs:m-auto"
+        className="container-other sm:m-auto xs:m-auto"
         style={{ overflowX: "scroll" }}
       >
         <div
