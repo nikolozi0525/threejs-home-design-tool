@@ -12,7 +12,6 @@ import RoomListData from "@/consts/RoomInfo";
 import useRooms from "@/store/room/hooks/useRooms";
 
 import "./styles.css";
-import { Close } from "@mui/icons-material";
 
 const PodCustomRightBar = ({ room }) => {
   const { changeRoom } = useRooms();
