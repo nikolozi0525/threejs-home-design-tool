@@ -11,16 +11,19 @@ const RoomSelection = ({}) => {
   };
 
   return (
-    <div className="relative flex overflow-hidden bg-gray-50">
-      <div className="relative bg-white pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+    <div className="relative flex overflow-hidden">
+      <div
+        className="relative pb-8  sm:max-w-lg sm:rounded-lg sm:px-5 m-auto"
+        style={{ width: "90%" }}
+      >
         <div className="mx-auto max-w-md">
           <div className="divide-y divide-gray-300/50">
             <div className="space-y-6 py-5 text-base leading-7 text-gray-600">
-              <ul className="roomList space-y-4">
+              <ul className="roomList grid grid-cols-2 gap-5">
                 {roomListData.map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-center border-gray-300 border rounded-xl shadow-[0_0_2px] bg-gray-100 p-3"
+                    className="items-center flex flex-col text-center border rounded-xl shadow-[0_0_2px] bg-gray-100 p-1"
                     draggable
                     onDragStart={(ev) => {
                       ev.dataTransfer.setData("selectedRoom", item.name);
@@ -28,11 +31,12 @@ const RoomSelection = ({}) => {
                     }}
                   >
                     <svg
-                      className="h-2/5 w-2/5 flex-none fill-sky-100 stroke-sky-500 stroke-2"
+                      className=" h-auto flex-none fill-sky-100 stroke-sky-500 stroke-2"
                       xmlns="http://www.w3.org/2000/svg"
                       width="400"
                       height="400"
                       viewBox="0 0 400 400"
+                      style={{ width: "70%" }}
                     >
                       <polygon
                         points="200,50 350,125 350,275 200,350 50,275 50,125"
@@ -41,13 +45,9 @@ const RoomSelection = ({}) => {
                         strokeWidth="2"
                       />
                     </svg>
-                    <div className="ml-4 grow text-center">
-                      <div>
-                        <h3 className="font-bold w-full">{item.name}</h3>
-                      </div>
-                      <div className="px-3 position-relative">
-                        <h3>{`$${item.price}`}</h3>
-                      </div>
+                    <div className="grow text-center">
+                      <h3 className="font-bold w-full">{item.name}</h3>
+                      <h3>{`$${item.price}`}</h3>
                     </div>
                   </li>
                 ))}
