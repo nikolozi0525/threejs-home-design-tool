@@ -1,18 +1,19 @@
 .room-grid {
   display: flex;
-  --s: 100px; /* size  */
-  --m: 4px; /* margin */
+  --s: 25px; /* size  */
+  --m: 1px; /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
 }
 
 .container-other {
-  border: 3px solid #696464;
+  border: 1px solid #7a7575;
   border-radius: 15px;
   overflow: hidden;
   height: 90vh;
 }
 
 .container-other .hexagonContent {
+  display: block;
   height: 115vh;
   /* text-align: center; */
   padding: -10%;

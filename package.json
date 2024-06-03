@@ -32,6 +32,7 @@
     "react-tilt": "^1.0.2",
     "react-type-animation": "^3.2.0",
     "react-vertical-timeline-component": "^3.6.0",
+    "react-zoom-pan-pinch": "^3.4.4",
     "three": "^0.164.1"
   },
   "devDependencies": {

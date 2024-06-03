@@ -7,7 +7,9 @@ import {
 } from "./actions";
 
 export const initialState = {
-  rooms: [{ index: 58, room: "Dinnig Room", color: "#D1C2F9", price: "15000" }],
+  rooms: [
+    { index: 1048, room: "Dinnig Room", color: "#D1C2F9", price: "15000" },
+  ],
   customRoom: { index: null, name: "", price: 0, furniture: [] },
   total: 15000,
 };

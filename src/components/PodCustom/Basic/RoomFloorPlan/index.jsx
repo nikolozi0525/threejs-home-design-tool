@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Compass from "../Compass";
-import roomListData from "@/consts/RoomInfo";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 import useRooms from "@/store/room/hooks/useRooms";
+import Compass from "../Compass";
 
 import "./styles.css";
 
@@ -30,58 +30,68 @@ const RoomHexagonGrid = () => {
         className="room-floorplan-container sm:m-auto xs:m-auto"
         style={{ overflowX: "scroll" }}
       >
-        <div
-          className="custom-hexagonContent"
-          style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
+        <TransformWrapper
+          initialScale={4}
+          maxScale={8}
+          minScale={1.1}
+          initialPositionX={-1500}
+          initialPositionY={-1000}
         >
-          {Array(400)
-            .fill(0)
-            .map((_, index) => {
-              const existRoomData = rooms.find((one) => {
-                return one.index == index;
-              });
-              return (
-                <div
-                  className={`custom-hexagon`}
-                  key={index}
-                  style={
-                    existRoomData
-                      ? existRoomData.index == customRoom.index
-                        ? { backgroundColor: "blue" }
-                        : {
-                            backgroundColor: "black",
-                          }
-                      : {}
-                  }
-                  onClick={(ev) => onSelect(index)}
-                >
-                  {/* <>
+          <TransformComponent>
+            <div
+              className="custom-hexagonContent"
+              style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
+            >
+              {Array(5000)
+                .fill(0)
+                .map((_, index) => {
+                  const existRoomData = rooms.find((one) => {
+                    return one.index == index;
+                  });
+                  return (
+                    <div
+                      className={`custom-hexagon`}
+                      key={index}
+                      style={
+                        existRoomData
+                          ? existRoomData.index == customRoom.index
+                            ? { backgroundColor: "orange" }
+                            : {
+                                backgroundColor: "black",
+                              }
+                          : {}
+                      }
+                      onClick={(ev) => onSelect(index)}
+                    >
+                      {/* <>
                     
 
 <span className={`inner`}></span>
                     <div className="line"></div>
                   </> */}
 
-                  <span
-                    id={`grid-inner-${index}`}
-                    className={`custom-inner `}
-                    style={
-                      existRoomData
-                        ? {
-                            backgroundColor: existRoomData.color,
-                          }
-                        : {}
-                    }
-                  ></span>
-                  {existRoomData && (
-                    <span className="custom-hexagon-tooltip">
-                      {existRoomData.room}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-        </div>
+                      <span
+                        id={`grid-inner-${index}`}
+                        className={`custom-inner `}
+                        style={
+                          existRoomData
+                            ? {
+                                backgroundColor: existRoomData.color,
+                              }
+                            : {}
+                        }
+                      ></span>
+                      {existRoomData && (
+                        <span className="custom-hexagon-tooltip">
+                          {existRoomData.room}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          </TransformComponent>
+        </TransformWrapper>
       </div>
     </div>
   );

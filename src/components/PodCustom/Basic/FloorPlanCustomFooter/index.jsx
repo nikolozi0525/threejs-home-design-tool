@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -17,7 +18,9 @@ const FloorPlanFooter = ({ room }) => {
       <div>Total: ${totalPrice}</div>
       <div>Pod Cost: ${price}</div>
       <div>Pod Type: {name || roomName}</div>
-      <div>Step: 2/4</div>
+      <div>
+        <Link to={"/"}>Step: 2/4</Link>
+      </div>
     </div>
   );
 };

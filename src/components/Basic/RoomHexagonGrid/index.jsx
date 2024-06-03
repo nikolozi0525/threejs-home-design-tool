@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
 import Compass from "../Compass";
 import roomListData from "@/consts/RoomInfo";
 
@@ -14,6 +16,7 @@ const RoomHexagonGrid = () => {
   } = useRooms();
 
   const [angle, setAngle] = useState(0);
+  const [isMovable, setIsMovable] = useState(false);
 
   const onDragOver = (ev) => {
     ev.preventDefault();
@@ -29,6 +32,7 @@ const RoomHexagonGrid = () => {
   };
 
   const onDragStart = (ev, roomInfo) => {
+    setIsMovable(true);
     if (roomInfo) {
       ev.dataTransfer.setData("selectedRoom", roomInfo.room);
       ev.dataTransfer.setData("selectedRoomColor", roomInfo.color);
@@ -42,6 +46,8 @@ const RoomHexagonGrid = () => {
   };
 
   const onDrop = (ev, index) => {
+    setIsMovable(false);
+
     ev.preventDefault();
     const selectedRoom = ev.dataTransfer.getData("selectedRoom");
 
@@ -88,48 +94,65 @@ const RoomHexagonGrid = () => {
         className="container-other sm:m-auto xs:m-auto"
         style={{ overflowX: "scroll" }}
       >
-        <div
-          className="hexagonContent"
-          style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
+        <TransformWrapper
+          initialScale={4}
+          maxScale={8}
+          minScale={1.1}
+          disabled={isMovable}
+          initialPositionX={-1500}
+          initialPositionY={-1000}
         >
-          {Array(400)
-            .fill(0)
-            .map((_, index) => {
-              const existRoomData = rooms.find((one) => {
-                return one.index == index;
-              });
-              return (
-                <div
-                  className={`hexagon`}
-                  key={index}
-                  onDragOver={onDragOver}
-                  onDragLeave={onDragLeave}
-                  onDragStart={(ev) => onDragStart(ev, existRoomData)}
-                  onDrop={(ev) => onDrop(ev, index)}
-                  draggable
-                >
-                  {/* <>
+          <TransformComponent>
+            <div
+              className="hexagonContent"
+              style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
+            >
+              {Array(5000)
+                .fill(0)
+                .map((_, index) => {
+                  const existRoomData = rooms.find((one) => {
+                    return one.index == index;
+                  });
+                  return (
+                    <div
+                      className={`hexagon`}
+                      key={index}
+                      onDragOver={onDragOver}
+                      onDragLeave={onDragLeave}
+                      onDragStart={(ev) => onDragStart(ev, existRoomData)}
+                      onDrop={(ev) => onDrop(ev, index)}
+                      draggable
+                    >
+                      {/* <>
                     
 
 <span className={`inner`}></span>
                     <div className="line"></div>
                   </> */}
 
-                  <span
-                    id={`grid-inner-${index}`}
-                    className={`inner `}
-                    style={
-                      existRoomData
-                        ? {
-                            backgroundColor: existRoomData.color,
-                          }
-                        : {}
-                    }
-                  ></span>
-                </div>
-              );
-            })}
-        </div>
+                      <span
+                        id={`grid-inner-${index}`}
+                        className={`inner `}
+                        style={
+                          existRoomData
+                            ? {
+                                backgroundColor: existRoomData.color,
+                              }
+                            : {}
+                        }
+                        onMouseDown={() => {
+                          setIsMovable(true);
+                        }}
+                        onMouseUp={() => {
+                          setIsMovable(false);
+                        }}
+                      ></span>
+                    </div>
+                  );
+                })}
+            </div>
+          </TransformComponent>
+        </TransformWrapper>
       </div>
     </div>
   );
