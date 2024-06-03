@@ -122,6 +122,9 @@ const RoomHexagonGrid = () => {
                       onDragStart={(ev) => onDragStart(ev, existRoomData)}
                       onDrop={(ev) => onDrop(ev, index)}
                       draggable
+                      onMouseDown={() => {
+                        setIsMovable(true);
+                      }}
                     >
                       {/* <>
                     

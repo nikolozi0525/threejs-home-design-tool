@@ -23,6 +23,14 @@ const RoomHexagonGrid = () => {
     selectRoom(selectedData);
   };
 
+  const chooseTooltipColor = (bgColor) => {
+    var r = parseInt(bgColor.substr(1, 2), 16);
+    var g = parseInt(bgColor.substr(3, 2), 16);
+    var b = parseInt(bgColor.substr(5, 2), 16);
+    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 128 ? "black" : "white";
+  };
+
   return (
     <div className="room-floorplan">
       <Compass callback={setAngleContainer} />
@@ -82,7 +90,12 @@ const RoomHexagonGrid = () => {
                         }
                       ></span>
                       {existRoomData && (
-                        <span className="custom-hexagon-tooltip">
+                        <span
+                          className="custom-hexagon-tooltip"
+                          style={{
+                            color: chooseTooltipColor(existRoomData.color),
+                          }}
+                        >
                           {existRoomData.room}
                         </span>
                       )}
