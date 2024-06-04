@@ -107,7 +107,7 @@ const RoomHexagonGrid = () => {
               className="hexagonContent"
               style={{ transform: `rotate(${angle}deg)`, width: "1000px" }}
             >
-              {Array(2795)
+              {Array(1535)
                 .fill(0)
                 .map((_, index) => {
                   const existRoomData = rooms.find((one) => {
