@@ -99,15 +99,15 @@ const RoomHexagonGrid = () => {
           maxScale={8}
           minScale={1.1}
           disabled={isMovable}
-          initialPositionX={-1500}
-          initialPositionY={-1000}
+          initialPositionX={-1350}
+          initialPositionY={-750}
         >
           <TransformComponent>
             <div
               className="hexagonContent"
-              style={{ transform: `rotate(${angle}deg)`, width: "1000px" }}
+              style={{ transform: `rotate(${angle}deg)`, width: "1400px" }}
             >
-              {Array(1535)
+              {Array(1935)
                 .fill(0)
                 .map((_, index) => {
                   const existRoomData = rooms.find((one) => {
