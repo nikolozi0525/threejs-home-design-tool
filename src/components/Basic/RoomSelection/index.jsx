@@ -23,7 +23,7 @@ const RoomSelection = ({}) => {
                 {roomListData.map((item, index) => (
                   <li
                     key={index}
-                    className="items-center flex flex-col text-center border rounded-xl shadow-[0_0_2px] bg-gray-100 p-1"
+                    className="items-center flex flex-col text-center border rounded-xl shadow-[0_0_2px] bg-white p-1"
                     draggable
                     onDragStart={(ev) => {
                       ev.dataTransfer.setData("selectedRoom", item.name);
