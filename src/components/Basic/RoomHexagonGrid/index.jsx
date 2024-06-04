@@ -105,7 +105,7 @@ const RoomHexagonGrid = () => {
           <TransformComponent>
             <div
               className="hexagonContent"
-              style={{ transform: `rotate(${angle}deg)`, width: "2000px" }}
+              style={{ transform: `rotate(${angle}deg)`, width: "1000px" }}
             >
               {Array(2795)
                 .fill(0)

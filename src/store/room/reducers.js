@@ -8,7 +8,7 @@ import {
 
 export const initialState = {
   rooms: [
-    { index: 1048, room: "Dinnig Room", color: "#D1C2F9", price: "15000" },
+    { index: 528, room: "Dinnig Room", color: "#D1C2F9", price: "15000" },
   ],
   customRoom: { index: null, name: "", price: 0, furniture: [] },
   total: 15000,
