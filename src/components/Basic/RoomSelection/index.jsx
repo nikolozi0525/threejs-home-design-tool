@@ -26,7 +26,7 @@ const RoomSelection = ({}) => {
                     className="items-center flex flex-col text-center border rounded-xl shadow-[0_0_2px] bg-white p-1"
                   >
                     <div
-                      className="flex justify-center bg-none"
+                      className="flex justify-center list-selection-room"
                       draggable
                       onDragStart={(ev) => {
                         ev.dataTransfer.setData("selectedRoom", item.name);

@@ -56,6 +56,9 @@
   margin-bottom: calc(1px - 70px * 0.2885);
 
   position: relative;
+}
 
+.list-selection-room {
   background: transparent;
+  z-index: 1;
 }
