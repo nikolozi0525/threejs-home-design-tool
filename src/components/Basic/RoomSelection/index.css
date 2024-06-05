@@ -44,3 +44,18 @@
 .roomList li:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.list-hexagon {
+  margin: 1px;
+  width: 70px;
+  height: calc(70px * 1.1547);
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  background-color: transparent;
+  margin-bottom: calc(1px - 70px * 0.2885);
+
+  position: relative;
+
+  background: transparent;
+}

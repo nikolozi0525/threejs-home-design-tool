@@ -41,7 +41,7 @@ const RoomHexagonGrid = () => {
         <TransformWrapper
           initialScale={4}
           maxScale={8}
-          minScale={1.1}
+          minScale={1.5}
           initialPositionX={-1350}
           initialPositionY={-750}
         >

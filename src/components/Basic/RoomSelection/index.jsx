@@ -24,13 +24,24 @@ const RoomSelection = ({}) => {
                   <li
                     key={index}
                     className="items-center flex flex-col text-center border rounded-xl shadow-[0_0_2px] bg-white p-1"
-                    draggable
-                    onDragStart={(ev) => {
-                      ev.dataTransfer.setData("selectedRoom", item.name);
-                      ev.dataTransfer.setData("selectedRoomColor", item.color);
-                    }}
                   >
-                    <svg
+                    <div
+                      className="flex justify-center bg-none"
+                      draggable
+                      onDragStart={(ev) => {
+                        ev.dataTransfer.setData("selectedRoom", item.name);
+                        ev.dataTransfer.setData(
+                          "selectedRoomColor",
+                          item.color
+                        );
+                      }}
+                    >
+                      <div
+                        className="list-hexagon mb-1"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                    </div>
+                    {/* <svg
                       className=" h-auto flex-none fill-sky-100 stroke-sky-500 stroke-2"
                       xmlns="http://www.w3.org/2000/svg"
                       width="400"
@@ -43,8 +54,16 @@ const RoomSelection = ({}) => {
                         fill={item.color || `#${Math.floor(Math.random())}`}
                         stroke="black"
                         strokeWidth="2"
+                        draggable
+                        onDragStart={(ev) => {
+                          ev.dataTransfer.setData("selectedRoom", item.name);
+                          ev.dataTransfer.setData(
+                            "selectedRoomColor",
+                            item.color
+                          );
+                        }}
                       />
-                    </svg>
+                    </svg> */}
                     <div className="grow text-center">
                       <h3 className="font-bold w-full">{item.name}</h3>
                       <h3>{`$${item.price}`}</h3>
